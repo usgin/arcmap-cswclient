@@ -7,10 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using ESRI.ArcGIS.Framework;
 using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.ArcMapUI;
 using ESRI.ArcGIS.GISClient;
 using ESRI.ArcGIS.esriSystem;
+using ESRI.ArcGIS.Display;
+using ESRI.ArcGIS.Geodatabase;
 
 namespace ArcMapAddin1
 {
@@ -24,11 +27,11 @@ namespace ArcMapAddin1
         private void buttonAddWms_Click(object sender, EventArgs e)
         {
             ///Create an WMSMapLayer Instance - this will be added to the map later 
-            IWMSGroupLayer pWMSMapLayer = new WMSMapLayer() as IWMSGroupLayer;
+            IWMSGroupLayer pWMSMapLayer = new WMSMapLayerClass() as IWMSGroupLayer;
 
             ///Create and configure wms connection name, this is used to store the connection properties
-            IWMSConnectionName pConnName = new WMSConnectionName();
-            IPropertySet pPropSet = new PropertySet();
+            IWMSConnectionName pConnName = new WMSConnectionNameClass();
+            IPropertySet pPropSet = new PropertySetClass();
             pPropSet.SetProperty("URL", txtboxWmsUrl.Text);
             pConnName.ConnectionProperties = pPropSet;
 
@@ -39,21 +42,6 @@ namespace ArcMapAddin1
 
             ///Get service description, which includes the categories of wms layers
             IWMSServiceDescription pServiceDesc = pWMSMapLayer.WMSServiceDescription;
-
-            for (int i = 0; i < pServiceDesc.LayerDescriptionCount; i++)
-            {
-                IWMSLayerDescription pLayerDesc = pServiceDesc.get_LayerDescription(i);
-
-                if (pLayerDesc.LayerDescriptionCount == 1) ///When this category only has one layer
-                {
-                    IWMSLayer pNewWMSLayer = pWMSMapLayer.CreateWMSLayer(pLayerDesc);
-                }
-                else ///When this category has two layers or more
-                {
-                    IWMSGroupLayer pGrpLayer = pWMSMapLayer.CreateWMSGroupLayers(pLayerDesc);
-                }
-
-            }
 
             ///Configure the layer before adding it to the map
             ILayer pLayer = pWMSMapLayer as ILayer;

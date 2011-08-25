@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
+using ESRI.ArcGIS.Display;
+using ESRI.ArcGIS.Geodatabase;
+
 namespace ArcMapAddin1
 {
     public class ButtonCSW : ESRI.ArcGIS.Desktop.AddIns.Button
