@@ -1,0 +1,9 @@
+C:\Users\gchen\AppData\Local\Temporary Projects\ArcMapAddin1\bin\Debug\ArcMapAddin1.dll
+C:\Users\gchen\AppData\Local\Temporary Projects\ArcMapAddin1\bin\Debug\ArcMapAddin1.pdb
+C:\Users\gchen\AppData\Local\Temporary Projects\ArcMapAddin1\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\gchen\AppData\Local\Temporary Projects\ArcMapAddin1\obj\Debug\ArcMapAddin1.FormCSW.resources
+C:\Users\gchen\AppData\Local\Temporary Projects\ArcMapAddin1\obj\Debug\ResGen.read.1.tlog
+C:\Users\gchen\AppData\Local\Temporary Projects\ArcMapAddin1\obj\Debug\ResGen.write.1.tlog
+C:\Users\gchen\AppData\Local\Temporary Projects\ArcMapAddin1\obj\Debug\ArcMapAddin1.dll
+C:\Users\gchen\AppData\Local\Temporary Projects\ArcMapAddin1\obj\Debug\ArcMapAddin1.pdb
+C:\Users\gchen\AppData\Local\Temporary Projects\ArcMapAddin1\bin\Debug\ArcMapAddin1.esriAddIn
