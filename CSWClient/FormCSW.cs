@@ -26,34 +26,51 @@ namespace ArcMapAddin1
 
         private void buttonAddWms_Click(object sender, EventArgs e)
         {
-            ///Create an WMSMapLayer Instance - this will be added to the map later 
-            IWMSGroupLayer pWMSMapLayer = new WMSMapLayerClass() as IWMSGroupLayer;
 
-            ///Create and configure wms connection name, this is used to store the connection properties
-            IWMSConnectionName pConnName = new WMSConnectionNameClass();
-            IPropertySet pPropSet = new PropertySetClass();
-            pPropSet.SetProperty("URL", txtboxWmsUrl.Text);
-            pConnName.ConnectionProperties = pPropSet;
+            try
+            {
+                ///Create an WMSMapLayer Instance - this will be added to the map later 
+                IWMSGroupLayer pWMSMapLayer = new WMSMapLayerClass() as IWMSGroupLayer;
 
-            ///Use the name information to connect to the service
-            IDataLayer pDataLayer = pWMSMapLayer as IDataLayer;
-            IName pName = pConnName as IName;
-            pDataLayer.Connect(pName);
+                ///Create and configure wms connection name, this is used to store the connection properties
+                IWMSConnectionName pConnName = new WMSConnectionNameClass();
+                IPropertySet pPropSet = new PropertySetClass();
+                pPropSet.SetProperty("URL", txtboxWmsUrl.Text);
+                pConnName.ConnectionProperties = pPropSet;
 
-            ///Get service description, which includes the categories of wms layers
-            IWMSServiceDescription pServiceDesc = pWMSMapLayer.WMSServiceDescription;
+                ///Use the name information to connect to the service
+                IDataLayer pDataLayer = pWMSMapLayer as IDataLayer;
+                IName pName = pConnName as IName;
+                pDataLayer.Connect(pName);
 
-            ///Configure the layer before adding it to the map
-            ILayer pLayer = pWMSMapLayer as ILayer;
-            pLayer.Name = pServiceDesc.WMSTitle;
+                ///Get service description, which includes the categories of wms layers
+                IWMSServiceDescription pServiceDesc = pWMSMapLayer.WMSServiceDescription;
 
-            ///Add layer to Map
-            IMxDocument pMxDoc = ArcMap.Document;
-            pMxDoc.FocusMap.AddLayer(pLayer);
+                ///Configure the layer before adding it to the map
+                ILayer pLayer = pWMSMapLayer as ILayer;
+                pLayer.Name = pServiceDesc.WMSTitle;
 
-            ///Refresh
-            IActiveView pActiveView = pMxDoc.FocusMap as IActiveView;
-            pActiveView.Refresh();
+                ///Add layer to Map
+                IMxDocument pMxDoc = ArcMap.Document;
+                pMxDoc.FocusMap.AddLayer(pLayer);
+
+                ///Refresh
+                IActiveView pActiveView = pMxDoc.FocusMap as IActiveView;
+                pActiveView.Refresh();
+            }
+            catch (System.Runtime.InteropServices.COMException cEx)
+            {
+                ///Catch comexception handler
+                MessageBox.Show("The wms url is invalid!\r\rError message:\r" + cEx.Message);
+            }
+            catch (Exception ex)
+            { 
+                ///Catch general exception handler
+                MessageBox.Show(ex.StackTrace);
+            }
+            
+
+
         }
     }
 }
