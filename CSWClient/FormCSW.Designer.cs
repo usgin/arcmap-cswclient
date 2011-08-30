@@ -30,6 +30,7 @@
         {
             this.txtboxWmsUrl = new System.Windows.Forms.TextBox();
             this.buttonAddWms = new System.Windows.Forms.Button();
+            this.buttonAddMapSvr = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtboxWmsUrl
@@ -49,11 +50,22 @@
             this.buttonAddWms.UseVisualStyleBackColor = true;
             this.buttonAddWms.Click += new System.EventHandler(this.buttonAddWms_Click);
             // 
+            // buttonAddMapSvr
+            // 
+            this.buttonAddMapSvr.Location = new System.Drawing.Point(70, 120);
+            this.buttonAddMapSvr.Name = "buttonAddMapSvr";
+            this.buttonAddMapSvr.Size = new System.Drawing.Size(148, 24);
+            this.buttonAddMapSvr.TabIndex = 2;
+            this.buttonAddMapSvr.Text = "Add Layer from MapServer";
+            this.buttonAddMapSvr.UseVisualStyleBackColor = true;
+            this.buttonAddMapSvr.Click += new System.EventHandler(this.buttonAddMapSvr_Click);
+            // 
             // FormCSW
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.buttonAddMapSvr);
             this.Controls.Add(this.buttonAddWms);
             this.Controls.Add(this.txtboxWmsUrl);
             this.Name = "FormCSW";
@@ -67,5 +79,6 @@
 
         private System.Windows.Forms.TextBox txtboxWmsUrl;
         private System.Windows.Forms.Button buttonAddWms;
+        private System.Windows.Forms.Button buttonAddMapSvr;
     }
 }

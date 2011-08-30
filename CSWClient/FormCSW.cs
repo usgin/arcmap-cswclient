@@ -72,5 +72,56 @@ namespace ArcMapAddin1
 
 
         }
+
+        private void buttonAddMapSvr_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                /*
+                IMapServerGroupLayer pGrpLayer = new MapServerLayerClass() as IMapServerGroupLayer;
+
+                IAGSServerConnectionName pConnName = new AGSServerConnectionNameClass();
+                IPropertySet pPropSet = new PropertySetClass();
+                pPropSet.SetProperty("URL", "http://services.azgs.az.gov/ArcGIS/services/aasggeothermal/ALBoreholeTemperatures/MapServer");
+                pConnName.ConnectionProperties = pPropSet;
+
+                IName pName = pConnName as IName;
+                IAGSServerConnection pAGSSConn = pName.Open() as IAGSServerConnection;
+
+                IAGSEnumServerObjectName pAGSEnumSOName = pAGSSConn.ServerObjectNames;
+                IAGSServerObjectName pSOName = pAGSEnumSOName.Next();
+
+                IMapServerLayer pMSLayer = new MapServerLayerClass();
+                pMSLayer.ServerConnect(pSOName, "TEST");
+
+
+                ///Add layer to Map
+                IMxDocument pMxDoc = ArcMap.Document;
+                pMxDoc.FocusMap.AddLayer(pMSLayer as ILayer);
+
+                ///Refresh
+                IActiveView pActiveView = pMxDoc.FocusMap as IActiveView;
+                pActiveView.Refresh();
+                */
+
+                IAGSServerConnectionFactory pAGSSvrConnFactory = new AGSServerConnectionFactoryClass();
+                IPropertySet pPropSet = new PropertySetClass();
+                pPropSet.SetProperty("URL", "http://services.azgs.az.gov/ArcGIS/services");
+                IAGSServerConnection pAGSSvrConn = pAGSSvrConnFactory.Open(pPropSet, 0);
+
+                IAGSEnumServerObjectName pEnumSOName = pAGSSvrConn.ServerObjectNames;
+                IAGSServerObjectName pAGSSOName = pEnumSOName.Next();
+
+                IName pName = pAGSSOName as IName;
+                IMapServer pMapSvr = pName.Open() as IMapServer;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+
+
+        }
     }
 }
