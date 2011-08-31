@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 using ESRI.ArcGIS.Framework;
 using ESRI.ArcGIS.Carto;
@@ -14,6 +15,7 @@ using ESRI.ArcGIS.GISClient;
 using ESRI.ArcGIS.esriSystem;
 using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Geodatabase;
+using ESRI.ArcGIS.Desktop.AddIns;
 
 namespace ArcMapAddin1
 {
@@ -77,43 +79,65 @@ namespace ArcMapAddin1
         {
             try
             {
-                /*
-                IMapServerGroupLayer pGrpLayer = new MapServerLayerClass() as IMapServerGroupLayer;
+                string strUrl = txtboxWmsUrl.Text;
+                string[] strUrlParts = strUrl.Split('/');
+                string strUrlSvr = null; 
+                string strSvrName = null;
 
-                IAGSServerConnectionName pConnName = new AGSServerConnectionNameClass();
+                for (int i = 0; i < strUrlParts.Length; i ++)
+                {
+                    if (strUrlParts[i] == "services")
+                    {
+                        strUrlSvr = string.Join("/", strUrlParts.Take(i + 1).ToArray());
+                        
+                        for (int j = i + 1; j < strUrlParts.Length - 1; j++)
+                        {
+                            if(strSvrName != null)
+                                strSvrName += "/";
+                            strSvrName += strUrlParts[j]; 
+                        }
+                        break;
+                    }
+                }
+
+
+                
+                IAGSServerConnectionFactory pAGSSvrConnFactory = new AGSServerConnectionFactoryClass();
                 IPropertySet pPropSet = new PropertySetClass();
-                pPropSet.SetProperty("URL", "http://services.azgs.az.gov/ArcGIS/services/aasggeothermal/ALBoreholeTemperatures/MapServer");
-                pConnName.ConnectionProperties = pPropSet;
+                pPropSet.SetProperty("URL", strUrlSvr);
+                IAGSServerConnection pAGSSvrConn = pAGSSvrConnFactory.Open(pPropSet, 0);
+                
+                IAGSEnumServerObjectName pEnumSOName = pAGSSvrConn.ServerObjectNames;
+                IAGSServerObjectName pAGSSOName = pEnumSOName.Next();
 
-                IName pName = pConnName as IName;
-                IAGSServerConnection pAGSSConn = pName.Open() as IAGSServerConnection;
+                while (pAGSSOName != null)
+                {
+                    Debug.WriteLine(pAGSSOName.Name + ":" + pAGSSOName.Type);
 
-                IAGSEnumServerObjectName pAGSEnumSOName = pAGSSConn.ServerObjectNames;
-                IAGSServerObjectName pSOName = pAGSEnumSOName.Next();
+                    if (pAGSSOName.Name == strSvrName && pAGSSOName.Type == "MapServer")
+                    {
+                        break;
+                    }
+                    
+                    pAGSSOName = pEnumSOName.Next();
+                }
 
-                IMapServerLayer pMSLayer = new MapServerLayerClass();
-                pMSLayer.ServerConnect(pSOName, "TEST");
+                IName pName = pAGSSOName as IName;
+                IMapServer pMapServer = pName.Open() as IMapServer;
 
+                IMapServerLayer pMapSvrLayer = new MapServerLayerClass();
+                pMapSvrLayer.ServerConnect(pAGSSOName, pMapServer.DefaultMapName);
+
+                ILayer pLayer = pMapSvrLayer as ILayer;
 
                 ///Add layer to Map
                 IMxDocument pMxDoc = ArcMap.Document;
-                pMxDoc.FocusMap.AddLayer(pMSLayer as ILayer);
+                pMxDoc.FocusMap.AddLayer(pLayer);
 
                 ///Refresh
                 IActiveView pActiveView = pMxDoc.FocusMap as IActiveView;
                 pActiveView.Refresh();
-                */
 
-                IAGSServerConnectionFactory pAGSSvrConnFactory = new AGSServerConnectionFactoryClass();
-                IPropertySet pPropSet = new PropertySetClass();
-                pPropSet.SetProperty("URL", "http://services.azgs.az.gov/ArcGIS/services");
-                IAGSServerConnection pAGSSvrConn = pAGSSvrConnFactory.Open(pPropSet, 0);
-
-                IAGSEnumServerObjectName pEnumSOName = pAGSSvrConn.ServerObjectNames;
-                IAGSServerObjectName pAGSSOName = pEnumSOName.Next();
-
-                IName pName = pAGSSOName as IName;
-                IMapServer pMapSvr = pName.Open() as IMapServer;
 
             }
             catch (Exception ex)
