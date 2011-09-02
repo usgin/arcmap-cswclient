@@ -18,6 +18,7 @@ namespace ArcMapAddin1
         }
 
         private ServiceOpener cSvcOpener = new ServiceOpener();
+        private CSWSearch cCswSearch = new CSWSearch();
         
         private void buttonAddWms_Click(object sender, EventArgs e)
         {            
@@ -28,5 +29,13 @@ namespace ArcMapAddin1
         {
             cSvcOpener.OpenAGS(txtboxWmsUrl.Text);
         }
+
+
+        private void buttonSearchCsw_Click(object sender, EventArgs e)
+        {
+            cCswSearch.CswUrl = txtboxCswUrl.Text;
+            cCswSearch.CswRequest();
+        }
+
     }
 }

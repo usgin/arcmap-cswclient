@@ -1,0 +1,22 @@
+<csw:GetRecords xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" version="2.0.2" service="CSW" resultType="results" startPosition="1" maxRecords="10" outputSchema="http://www.isotc211.org/2005/gmd">
+<csw:Query typeNames="csw:Record" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml">
+<csw:ElementSetName>full</csw:ElementSetName>
+<csw:Constraint version="1.1.0">
+<ogc:Filter>
+<ogc:And>
+<ogc:PropertyIsLike wildCard="*" escape="\" singleChar="?">
+<ogc:PropertyName>apiso:ServiceType</ogc:PropertyName>
+<ogc:Literal>WMS</ogc:Literal>
+</ogc:PropertyIsLike>
+<ogc:BBOX>
+<ogc:PropertyName>ows:BoundingBox</ogc:PropertyName>
+<gml:Envelope>
+<gml:lowerCorner>-118.3 32.1</gml:lowerCorner>
+<gml:upperCorner>-87.1 45.2</gml:upperCorner>
+</gml:Envelope>
+</ogc:BBOX>
+</ogc:And>
+</ogc:Filter>
+</csw:Constraint>
+</csw:Query>
+</csw:GetRecords>
