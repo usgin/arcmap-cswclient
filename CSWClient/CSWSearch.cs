@@ -9,7 +9,8 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Net;
 using System.IO;
-using System.Net;
+using System.Collections;
+
 
 
 namespace ArcMapAddin1
@@ -18,6 +19,8 @@ namespace ArcMapAddin1
     {
         private string strCswUrl;
         private string strPostDa;
+        private string strResponseTxt;
+        private ArrayList rDataList;
 
         public string CswUrl 
         {
@@ -32,6 +35,22 @@ namespace ArcMapAddin1
             set
             {
                 strPostDa = value;
+            }
+        }
+
+        public string ResponseTxt
+        {
+            get
+            {
+                return strResponseTxt;
+            }
+        }
+
+        public ArrayList DataList
+        {
+            get
+            {
+                return rDataList;
             }
         }
 
@@ -65,18 +84,25 @@ namespace ArcMapAddin1
                 HttpWebResponse cswResponse = (HttpWebResponse)cswRequest.GetResponse();
                 Stream cswRpStream = cswResponse.GetResponseStream();
                 StreamReader cswRpReader = new StreamReader(cswRpStream);
-                string strRpTxt = cswRpReader.ReadToEnd();
+                strResponseTxt = cswRpReader.ReadToEnd();
                 cswRpReader.Close();
+
+                ///Test
+                ParseCswResponse cPCswRp = new ParseCswResponse();
+                cPCswRp.ResponseTxt = strResponseTxt;
+                cPCswRp.ParseResponse();
+
+                ///List all the services
+                rDataList = cPCswRp.DataList;
 
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            
-
 
         }
+
 
 
     }

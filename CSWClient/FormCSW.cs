@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Collections;
 
 namespace ArcMapAddin1
 {
@@ -35,6 +36,16 @@ namespace ArcMapAddin1
         {
             cCswSearch.CswUrl = txtboxCswUrl.Text;
             cCswSearch.CswRequest();
+
+            ArrayList rList = cCswSearch.DataList;
+
+            for (int i = 0; i < rList.Count; i++)
+            {
+                ListDataModel list = rList[i] as ListDataModel;
+                lstboxCSW.Items.Add(list.Title);
+            }
+
+            
         }
 
     }
