@@ -58,11 +58,13 @@ namespace ArcMapAddin1
         {
             try
             {
-                ///Test
+               
                 strCswUrl = "http://catalog.usgin.org/geoportal/csw/discovery?";
-                System.IO.StreamReader myFile = new System.IO.StreamReader("K:\\test.xml");
-                strPostDa = myFile.ReadToEnd();
-                myFile.Close();
+
+                ///Get xml data for post request
+                CreatePostData pPostData = new CreatePostData();
+                pPostData.CreatXmlDoc();
+                strPostDa = pPostData.PostData;
                 
                 ///Send csw request         
                 Uri cswUri = new Uri(strCswUrl);

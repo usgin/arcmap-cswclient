@@ -20,6 +20,7 @@ namespace ArcMapAddin1
 
         private ServiceOpener cSvcOpener = new ServiceOpener();
         private CSWSearch cCswSearch = new CSWSearch();
+        private ArrayList rList = new ArrayList();
         
         private void buttonAddWms_Click(object sender, EventArgs e)
         {            
@@ -34,10 +35,10 @@ namespace ArcMapAddin1
 
         private void buttonSearchCsw_Click(object sender, EventArgs e)
         {
-            cCswSearch.CswUrl = txtboxCswUrl.Text;
+            cCswSearch.CswUrl = txtboxSearch.Text;
             cCswSearch.CswRequest();
 
-            ArrayList rList = cCswSearch.DataList;
+            rList = cCswSearch.DataList;
 
             for (int i = 0; i < rList.Count; i++)
             {
@@ -46,6 +47,11 @@ namespace ArcMapAddin1
             }
 
             
+        }
+
+        private void txtboxWmsUrl_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
     }
