@@ -36,9 +36,15 @@ namespace ArcMapAddin1
         private void buttonSearchCsw_Click(object sender, EventArgs e)
         {
             cCswSearch.CswUrl = txtboxSearch.Text;
-            cCswSearch.CswRequest();
+
+            ///Create a post data criteria object
+            ///
+            PostDataCriteria pPostDaCri = new PostDataCriteria();
+            pPostDaCri.SearchText = txtboxSearch.Text;
+            cCswSearch.CswRequest(pPostDaCri);
 
             rList = cCswSearch.DataList;
+            lstboxCSW.Items.Clear();
 
             for (int i = 0; i < rList.Count; i++)
             {
@@ -49,7 +55,7 @@ namespace ArcMapAddin1
             
         }
 
-        private void txtboxWmsUrl_TextChanged(object sender, EventArgs e)
+        private void lstboxCSW_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

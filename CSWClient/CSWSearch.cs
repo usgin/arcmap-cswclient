@@ -25,36 +25,28 @@ namespace ArcMapAddin1
         public string CswUrl 
         {
             set 
-            {
-                strCswUrl = value;
-            }
+            { strCswUrl = value; }
         }
 
         public string PostData
         {
             set
-            {
-                strPostDa = value;
-            }
+            { strPostDa = value; }
         }
 
         public string ResponseTxt
         {
             get
-            {
-                return strResponseTxt;
-            }
+            { return strResponseTxt; }
         }
 
         public ArrayList DataList
         {
             get
-            {
-                return rDataList;
-            }
+            { return rDataList; }
         }
 
-        public void CswRequest()
+        public void CswRequest(PostDataCriteria pPostDaCri)
         {
             try
             {
@@ -62,8 +54,9 @@ namespace ArcMapAddin1
                 strCswUrl = "http://catalog.usgin.org/geoportal/csw/discovery?";
 
                 ///Get xml data for post request
+                ///
                 CreatePostData pPostData = new CreatePostData();
-                pPostData.CreatXmlDoc();
+                pPostData.CreatXmlDoc(pPostDaCri);
                 strPostDa = pPostData.PostData;
                 
                 ///Send csw request         
@@ -89,7 +82,7 @@ namespace ArcMapAddin1
                 strResponseTxt = cswRpReader.ReadToEnd();
                 cswRpReader.Close();
 
-                ///Test
+                ///Parse csw response
                 ParseCswResponse cPCswRp = new ParseCswResponse();
                 cPCswRp.ResponseTxt = strResponseTxt;
                 cPCswRp.ParseResponse();

@@ -42,7 +42,6 @@
             this.txtboxWmsUrl.Name = "txtboxWmsUrl";
             this.txtboxWmsUrl.Size = new System.Drawing.Size(238, 20);
             this.txtboxWmsUrl.TabIndex = 0;
-            this.txtboxWmsUrl.TextChanged += new System.EventHandler(this.txtboxWmsUrl_TextChanged);
             // 
             // buttonAddWms
             // 
@@ -78,6 +77,7 @@
             this.lstboxCSW.Name = "lstboxCSW";
             this.lstboxCSW.Size = new System.Drawing.Size(238, 121);
             this.lstboxCSW.TabIndex = 4;
+            this.lstboxCSW.SelectedIndexChanged += new System.EventHandler(this.lstboxCSW_SelectedIndexChanged);
             // 
             // buttonSearchCsw
             // 

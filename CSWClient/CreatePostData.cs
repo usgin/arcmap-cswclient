@@ -11,6 +11,7 @@ namespace ArcMapAddin1
     class CreatePostData
     {
         private string strPostData;
+        private PostDataCriteria pPostDataCriteria;
 
         public string PostData
         {
@@ -18,8 +19,10 @@ namespace ArcMapAddin1
             { return strPostData; }
         }
 
-        public void CreatXmlDoc()
+        public void CreatXmlDoc(PostDataCriteria pPostDaCri)
         {
+            pPostDataCriteria = pPostDaCri;
+
             try
             {
                 StringBuilder pBuilder = new StringBuilder();
@@ -31,15 +34,11 @@ namespace ArcMapAddin1
                 pBuilder.Append("</csw:ElementSetName>");
                 pBuilder.Append("<csw:Constraint version='1.1.0'>");
                 pBuilder.Append("<ogc:Filter>");
+
                 pBuilder.Append("<ogc:And>");
-                pBuilder.Append("<ogc:PropertyIsLike wildCard='*' escape='\' singleChar='?'>");
-                pBuilder.Append("<ogc:PropertyName>");
-                pBuilder.Append("AnyText");
-                pBuilder.Append("</ogc:PropertyName>");
-                pBuilder.Append("<ogc:Literal>");
-                pBuilder.Append("arizona");
-                pBuilder.Append("</ogc:Literal>");
-                pBuilder.Append("</ogc:PropertyIsLike>");
+
+                SearchText(pBuilder);
+
                 pBuilder.Append("<ogc:BBOX>");
                 pBuilder.Append("<ogc:PropertyName>");
                 pBuilder.Append("ows:BoundingBox");
@@ -53,7 +52,9 @@ namespace ArcMapAddin1
                 pBuilder.Append("</gml:upperCorner>");
                 pBuilder.Append("</gml:Envelope>");
                 pBuilder.Append("</ogc:BBOX>");
+
                 pBuilder.Append("</ogc:And>");
+
                 pBuilder.Append("</ogc:Filter>");
                 pBuilder.Append("</csw:Constraint>");
                 pBuilder.Append("</csw:Query>");
@@ -68,6 +69,21 @@ namespace ArcMapAddin1
             }
 
         }
+
+        private void SearchText(StringBuilder pBuilder)
+        {
+            pBuilder.Append("<ogc:PropertyIsLike wildCard='*' escape='\' singleChar='?'>");
+            pBuilder.Append("<ogc:PropertyName>");
+            pBuilder.Append("AnyText");
+            pBuilder.Append("</ogc:PropertyName>");
+            pBuilder.Append("<ogc:Literal>");
+
+            pBuilder.Append(pPostDataCriteria.SearchText);
+
+            pBuilder.Append("</ogc:Literal>");
+            pBuilder.Append("</ogc:PropertyIsLike>"); 
+        }
+
         
     }
 
