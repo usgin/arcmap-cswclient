@@ -28,6 +28,8 @@ namespace ArcMapAddin1
    
         private void buttonSearchCsw_Click(object sender, EventArgs e)
         {
+            buttonSearchCsw.Cursor = Cursors.WaitCursor;
+
             cCswSearch.CswUrl = txtboxSearch.Text;
 
             ///Create a post data criteria object
@@ -50,6 +52,8 @@ namespace ArcMapAddin1
                 ListDataModel list = rList[i] as ListDataModel;
                 lstboxCSW.Items.Add(list.Title);
             }
+
+            buttonSearchCsw.Cursor = Cursors.Default;
         
         }
 
@@ -77,6 +81,8 @@ namespace ArcMapAddin1
 
         private void lstboxCSW_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstboxCSW.Cursor = Cursors.WaitCursor;
+
             ///Read metadata information for the selected item
             ListDataModel selectedItem = rList[lstboxCSW.SelectedIndex] as ListDataModel;
             pAddLayer.ListDaModel = selectedItem;
@@ -91,6 +97,8 @@ namespace ArcMapAddin1
             {
                 buttonAddLayer.Enabled = true;
             }
+
+            lstboxCSW.Cursor = Cursors.Default;
         }
 
 
