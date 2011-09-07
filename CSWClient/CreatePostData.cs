@@ -27,7 +27,12 @@ namespace ArcMapAddin1
             {
                 StringBuilder pBuilder = new StringBuilder();
 
-                pBuilder.Append("<csw:GetRecords xmlns:csw='http://www.opengis.net/cat/csw/2.0.2' version='2.0.2' service='CSW' resultType='results' startPosition='1' maxRecords='10'>");
+                pBuilder.Append("<csw:GetRecords xmlns:csw='http://www.opengis.net/cat/csw/2.0.2' version='2.0.2' service='CSW' resultType='results' startPosition='1' ");
+
+                MaxResults(pBuilder); ///Set max number of results shown in the list box
+
+                pBuilder.Append(">");
+
                 pBuilder.Append("<csw:Query typeNames='csw:Record' xmlns:ogc='http://www.opengis.net/ogc' xmlns:gml='http://www.opengis.net/gml'>");
                 pBuilder.Append("<csw:ElementSetName>");
                 pBuilder.Append("brief");
@@ -37,21 +42,9 @@ namespace ArcMapAddin1
 
                 pBuilder.Append("<ogc:And>");
 
-                SearchText(pBuilder);
+                SearchText(pBuilder); ///Set search criterias, including search key word and search area
 
-                pBuilder.Append("<ogc:BBOX>");
-                pBuilder.Append("<ogc:PropertyName>");
-                pBuilder.Append("ows:BoundingBox");
-                pBuilder.Append("</ogc:PropertyName>");
-                pBuilder.Append("<gml:Envelope>");
-                pBuilder.Append("<gml:lowerCorner>");
-                pBuilder.Append("-118.3 32.1");
-                pBuilder.Append("</gml:lowerCorner>");
-                pBuilder.Append("<gml:upperCorner>");
-                pBuilder.Append("-87.1 45.2");
-                pBuilder.Append("</gml:upperCorner>");
-                pBuilder.Append("</gml:Envelope>");
-                pBuilder.Append("</ogc:BBOX>");
+                BoundingBox(pBuilder); ///Set bounding box
 
                 pBuilder.Append("</ogc:And>");
 
@@ -74,7 +67,9 @@ namespace ArcMapAddin1
         {
             pBuilder.Append("<ogc:PropertyIsLike wildCard='*' escape='\' singleChar='?'>");
             pBuilder.Append("<ogc:PropertyName>");
-            pBuilder.Append("AnyText");
+
+            pBuilder.Append(pPostDataCriteria.QueryName);
+            
             pBuilder.Append("</ogc:PropertyName>");
             pBuilder.Append("<ogc:Literal>");
 
@@ -82,6 +77,28 @@ namespace ArcMapAddin1
 
             pBuilder.Append("</ogc:Literal>");
             pBuilder.Append("</ogc:PropertyIsLike>"); 
+        }
+
+        private void MaxResults(StringBuilder pBuilder)
+        {
+            pBuilder.Append("maxRecords='" + pPostDataCriteria.MaxRecords + "'");
+        }
+
+        private void BoundingBox(StringBuilder pBuilder)
+        {
+            pBuilder.Append("<ogc:BBOX>");
+            pBuilder.Append("<ogc:PropertyName>");
+            pBuilder.Append("ows:BoundingBox");
+            pBuilder.Append("</ogc:PropertyName>");
+            pBuilder.Append("<gml:Envelope>");
+            pBuilder.Append("<gml:lowerCorner>");
+            pBuilder.Append("-118.3 32.1");
+            pBuilder.Append("</gml:lowerCorner>");
+            pBuilder.Append("<gml:upperCorner>");
+            pBuilder.Append("-87.1 45.2");
+            pBuilder.Append("</gml:upperCorner>");
+            pBuilder.Append("</gml:Envelope>");
+            pBuilder.Append("</ogc:BBOX>");            
         }
 
         
