@@ -16,6 +16,7 @@ namespace ArcMapAddin1
         private ServiceOpener cSvcOpener = new ServiceOpener();
         private CSWSearch cCswSearch = new CSWSearch();
         private ArrayList rList = new ArrayList();
+        private AddLayer pAddLayer = new AddLayer();
 
         public FormCSW()
         {
@@ -25,17 +26,6 @@ namespace ArcMapAddin1
             cboboxMaxResults.SelectedIndex = 0;
         }
    
-        private void buttonAddWms_Click(object sender, EventArgs e)
-        {            
-            cSvcOpener.OpenWMS(txtboxWmsUrl.Text);
-        }
-
-        private void buttonAddMapSvr_Click(object sender, EventArgs e)
-        {
-            cSvcOpener.OpenAGS(txtboxWmsUrl.Text);
-        }
-
-
         private void buttonSearchCsw_Click(object sender, EventArgs e)
         {
             cCswSearch.CswUrl = txtboxSearch.Text;
@@ -43,12 +33,12 @@ namespace ArcMapAddin1
             ///Create a post data criteria object
             PostDataCriteria pPostDaCri = new PostDataCriteria();
 
-            ///Get search text from search text box
-            pPostDaCri.SearchText = txtboxSearch.Text;
-            ///Get query name from the combo box
-            pPostDaCri.QueryName = cboboxQueryType.SelectedItem.ToString();
-            ///Get max results number from the combo box
-            pPostDaCri.MaxRecords = cboboxMaxResults.SelectedItem.ToString();
+
+            pPostDaCri.SearchText = txtboxSearch.Text; ///Get search text from search text box
+
+            pPostDaCri.QueryName = cboboxQueryType.SelectedItem.ToString(); ///Get query name from the combo box
+
+            pPostDaCri.MaxRecords = cboboxMaxResults.SelectedItem.ToString(); ///Get max results number from the combo box
 
             cCswSearch.CswRequest(pPostDaCri);
 
@@ -65,17 +55,42 @@ namespace ArcMapAddin1
 
         private void buttonAddLayer_Click(object sender, EventArgs e)
         {
-            AddLayer pAddLayer = new AddLayer();
-
-            ListDataModel selectedItem = rList[lstboxCSW.SelectedIndex] as ListDataModel;
-            pAddLayer.ListDaModel = selectedItem;
-            pAddLayer.AddLayer2Map();
-
+            ///Add wms services
             if (pAddLayer.ServiceType == "WMS" || pAddLayer.ServiceType == "wms")
             {
-                cSvcOpener.OpenWMS(pAddLayer.ServerLink);
+                string strServiceLink = pAddLayer.ServerLink;
+                
+                if (strServiceLink[strServiceLink .Length -1] != '&')
+                {
+                    strServiceLink += "?"; 
+                }
+
+                cSvcOpener.OpenWMS(strServiceLink);
             }
+
+            //////////////////////////////////////
+            ///Add ArcGIS Rest services
+            ///cSvcOpener.OpenAGS(strServiceLink);
+            //////////////////////////////////////
             
+        }
+
+        private void lstboxCSW_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ///Read metadata information for the selected item
+            ListDataModel selectedItem = rList[lstboxCSW.SelectedIndex] as ListDataModel;
+            pAddLayer.ListDaModel = selectedItem;
+            pAddLayer.GetLayerInfo();
+
+            ///To identify if the service can be added into the map
+            if (pAddLayer.ServiceType == null)
+            {
+                buttonAddLayer.Enabled = false;
+            }
+            else
+            {
+                buttonAddLayer.Enabled = true;
+            }
         }
 
 

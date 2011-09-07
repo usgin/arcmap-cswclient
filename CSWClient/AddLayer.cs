@@ -30,7 +30,7 @@ namespace ArcMapAddin1
             get { return strServiceType; }
         }
 
-        public void AddLayer2Map()
+        public void GetLayerInfo()
         {
             //MessageBox.Show(cListDaModel.MetadataUrl);
 
