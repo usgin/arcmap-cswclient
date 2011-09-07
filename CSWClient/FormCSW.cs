@@ -63,6 +63,21 @@ namespace ArcMapAddin1
         
         }
 
+        private void buttonAddLayer_Click(object sender, EventArgs e)
+        {
+            AddLayer pAddLayer = new AddLayer();
+
+            ListDataModel selectedItem = rList[lstboxCSW.SelectedIndex] as ListDataModel;
+            pAddLayer.ListDaModel = selectedItem;
+            pAddLayer.AddLayer2Map();
+
+            if (pAddLayer.ServiceType == "WMS" || pAddLayer.ServiceType == "wms")
+            {
+                cSvcOpener.OpenWMS(pAddLayer.ServerLink);
+            }
+            
+        }
+
 
     }
 }

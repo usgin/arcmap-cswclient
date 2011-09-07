@@ -37,6 +37,7 @@
             this.cboboxQueryType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cboboxMaxResults = new System.Windows.Forms.ComboBox();
+            this.buttonAddLayer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtboxWmsUrl
@@ -128,11 +129,22 @@
             this.cboboxMaxResults.Size = new System.Drawing.Size(55, 21);
             this.cboboxMaxResults.TabIndex = 13;
             // 
+            // buttonAddLayer
+            // 
+            this.buttonAddLayer.Location = new System.Drawing.Point(27, 285);
+            this.buttonAddLayer.Name = "buttonAddLayer";
+            this.buttonAddLayer.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddLayer.TabIndex = 14;
+            this.buttonAddLayer.Text = "Add";
+            this.buttonAddLayer.UseVisualStyleBackColor = true;
+            this.buttonAddLayer.Click += new System.EventHandler(this.buttonAddLayer_Click);
+            // 
             // FormCSW
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(274, 443);
+            this.Controls.Add(this.buttonAddLayer);
             this.Controls.Add(this.cboboxMaxResults);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cboboxQueryType);
@@ -160,5 +172,6 @@
         private System.Windows.Forms.ComboBox cboboxQueryType;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboboxMaxResults;
+        private System.Windows.Forms.Button buttonAddLayer;
     }
 }

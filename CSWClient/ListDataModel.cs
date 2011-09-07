@@ -13,25 +13,17 @@ namespace ArcMapAddin1
         public string MetadataUrl
         {
             set
-            {
-                strMetadataUrl = value;
-            }
+            { strMetadataUrl = value; }
             get
-            {
-                return strMetadataUrl;
-            }
+            { return strMetadataUrl; }
         }
 
         public string Title
         {
             set
-            {
-                strTitle = value;
-            }
+            { strTitle = value; }
             get
-            {
-                return strTitle;
-            }
+            { return strTitle; }
         }
     }
 }
