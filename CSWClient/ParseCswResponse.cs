@@ -38,11 +38,11 @@ namespace ArcMapAddin1
             xnManager.AddNamespace("dc", "http://purl.org/dc/elements/1.1/");
             xnManager.AddNamespace("dcmiBox", "http://dublincore.org/documents/2000/07/11/dcmi-box/");
             xnManager.AddNamespace("dct", "http://purl.org/dc/terms/");
-            xnManager.AddNamespace("gml", "http://www.isotc211.org/2005/srv");
+            xnManager.AddNamespace("gml", "http://www.opengis.net/gml");
             xnManager.AddNamespace("ows", "http://www.opengis.net/ows");
             xnManager.AddNamespace("xsd", "http://www.w3.org/2001/XMLSchema");
 
-            XmlNodeList ndMDaList = xDoc.SelectNodes("//csw:SearchResults/csw:Record", xnManager);
+            XmlNodeList ndMDaList = xDoc.SelectNodes("//csw:SearchResults/csw:BriefRecord", xnManager);
   
             ParseSearchResults(ndMDaList, xnManager);
 
@@ -67,12 +67,12 @@ namespace ArcMapAddin1
             XmlNode ndTitle = nd.SelectSingleNode("dc:title", xnManager);
             lstData.Title = ndTitle.InnerText;
 
-            XmlNodeList ndRefList = nd.SelectNodes("dct:references", xnManager);
+            XmlNodeList ndRefList = nd.SelectNodes("dc:identifier", xnManager);
             for (int iRef = ndRefList.Count - 1; iRef >= 0; iRef --)
             {
                 XmlNode ndRef = ndRefList.Item(iRef);
 
-                if (ndRef.Attributes.Item(0).InnerText.Contains("Metadata:Document"))
+                if (ndRef.Attributes.Item(0).InnerText.Contains("Metadata:DocID"))
                 {
                     lstData.MetadataUrl = ndRef.InnerText;
                     break;

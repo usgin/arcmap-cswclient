@@ -34,18 +34,19 @@
             this.txtboxSearch = new System.Windows.Forms.TextBox();
             this.lstboxCSW = new System.Windows.Forms.ListBox();
             this.buttonSearchCsw = new System.Windows.Forms.Button();
+            this.cboboxQueryType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // txtboxWmsUrl
             // 
-            this.txtboxWmsUrl.Location = new System.Drawing.Point(26, 270);
+            this.txtboxWmsUrl.Location = new System.Drawing.Point(26, 342);
             this.txtboxWmsUrl.Name = "txtboxWmsUrl";
-            this.txtboxWmsUrl.Size = new System.Drawing.Size(238, 20);
+            this.txtboxWmsUrl.Size = new System.Drawing.Size(268, 20);
             this.txtboxWmsUrl.TabIndex = 0;
             // 
             // buttonAddWms
             // 
-            this.buttonAddWms.Location = new System.Drawing.Point(85, 296);
+            this.buttonAddWms.Location = new System.Drawing.Point(105, 368);
             this.buttonAddWms.Name = "buttonAddWms";
             this.buttonAddWms.Size = new System.Drawing.Size(100, 23);
             this.buttonAddWms.TabIndex = 1;
@@ -55,7 +56,7 @@
             // 
             // buttonAddMapSvr
             // 
-            this.buttonAddMapSvr.Location = new System.Drawing.Point(62, 325);
+            this.buttonAddMapSvr.Location = new System.Drawing.Point(79, 397);
             this.buttonAddMapSvr.Name = "buttonAddMapSvr";
             this.buttonAddMapSvr.Size = new System.Drawing.Size(148, 24);
             this.buttonAddMapSvr.TabIndex = 2;
@@ -65,23 +66,23 @@
             // 
             // txtboxSearch
             // 
-            this.txtboxSearch.Location = new System.Drawing.Point(26, 87);
+            this.txtboxSearch.Location = new System.Drawing.Point(118, 186);
             this.txtboxSearch.Name = "txtboxSearch";
-            this.txtboxSearch.Size = new System.Drawing.Size(159, 20);
+            this.txtboxSearch.Size = new System.Drawing.Size(109, 20);
             this.txtboxSearch.TabIndex = 3;
             // 
             // lstboxCSW
             // 
             this.lstboxCSW.FormattingEnabled = true;
-            this.lstboxCSW.Location = new System.Drawing.Point(26, 125);
+            this.lstboxCSW.Location = new System.Drawing.Point(26, 215);
             this.lstboxCSW.Name = "lstboxCSW";
-            this.lstboxCSW.Size = new System.Drawing.Size(238, 121);
+            this.lstboxCSW.Size = new System.Drawing.Size(268, 121);
             this.lstboxCSW.TabIndex = 4;
             this.lstboxCSW.SelectedIndexChanged += new System.EventHandler(this.lstboxCSW_SelectedIndexChanged);
             // 
             // buttonSearchCsw
             // 
-            this.buttonSearchCsw.Location = new System.Drawing.Point(207, 84);
+            this.buttonSearchCsw.Location = new System.Drawing.Point(237, 186);
             this.buttonSearchCsw.Name = "buttonSearchCsw";
             this.buttonSearchCsw.Size = new System.Drawing.Size(57, 23);
             this.buttonSearchCsw.TabIndex = 5;
@@ -89,11 +90,26 @@
             this.buttonSearchCsw.UseVisualStyleBackColor = true;
             this.buttonSearchCsw.Click += new System.EventHandler(this.buttonSearchCsw_Click);
             // 
+            // cboboxQueryType
+            // 
+            this.cboboxQueryType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboboxQueryType.FormattingEnabled = true;
+            this.cboboxQueryType.Items.AddRange(new object[] {
+            "AnyText",
+            "Title",
+            "Abstract",
+            "ServiceType"});
+            this.cboboxQueryType.Location = new System.Drawing.Point(26, 185);
+            this.cboboxQueryType.Name = "cboboxQueryType";
+            this.cboboxQueryType.Size = new System.Drawing.Size(86, 21);
+            this.cboboxQueryType.TabIndex = 6;
+            // 
             // FormCSW
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 370);
+            this.ClientSize = new System.Drawing.Size(323, 443);
+            this.Controls.Add(this.cboboxQueryType);
             this.Controls.Add(this.buttonSearchCsw);
             this.Controls.Add(this.lstboxCSW);
             this.Controls.Add(this.txtboxSearch);
@@ -115,5 +131,6 @@
         private System.Windows.Forms.TextBox txtboxSearch;
         private System.Windows.Forms.ListBox lstboxCSW;
         private System.Windows.Forms.Button buttonSearchCsw;
+        private System.Windows.Forms.ComboBox cboboxQueryType;
     }
 }
