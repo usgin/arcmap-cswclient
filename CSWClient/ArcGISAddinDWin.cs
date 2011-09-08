@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace ArcMapAddin1
 {
@@ -14,10 +15,18 @@ namespace ArcMapAddin1
     /// </summary>
     public partial class ArcGISAddinDWin : UserControl
     {
+        private ServiceOpener cSvcOpener = new ServiceOpener();
+        private CSWSearch cCswSearch = new CSWSearch();
+        private ArrayList rList = new ArrayList();
+        private AddLayer pAddLayer = new AddLayer();        
+
         public ArcGISAddinDWin(object hook)
         {
             InitializeComponent();
             this.Hook = hook;
+
+            cboSearchName.SelectedIndex = 0;
+            cboMaxResults.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -55,6 +64,33 @@ namespace ArcMapAddin1
                 base.Dispose(disposing);
             }
 
+
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            btnSearch.Cursor = Cursors.WaitCursor;
+
+            cCswSearch.CswUrl = tboxSearchText.Text;
+
+            PostDataCriteria pPostDaCri = new PostDataCriteria();
+
+            pPostDaCri.SearchText = tboxSearchText.Text;
+            pPostDaCri.QueryName = cboSearchName.SelectedItem.ToString();
+            pPostDaCri.MaxRecords = cboMaxResults.SelectedItem.ToString();
+            cCswSearch.CswRequest(pPostDaCri);
+
+            rList = cCswSearch.DataList;
+            lboxResults.Items.Clear();
+
+            for (int i = 0; i < rList.Count; i++)
+            {
+                ListDataModel list = rList[i] as ListDataModel;
+                lboxResults.Items.Add(list.Title);
+            }
+
+            btnSearch.Cursor = Cursors.Default;
+        }
+
     }
 }

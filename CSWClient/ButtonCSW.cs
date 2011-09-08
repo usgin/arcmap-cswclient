@@ -23,6 +23,7 @@ namespace ArcMapAddin1
             //
             //FormCSW fCSW = new FormCSW();
             //fCSW.Show();
+
             try
             { 
                 IDockableWindow dWin = this.GetDockableWindow(ArcMap.Application, "Microsoft_ArcMapAddin1_ArcGISAddinDWin");
