@@ -88,6 +88,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddLayer.cs" />
+    <Compile Include="ArcGISAddinDWin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ArcGISAddinDWin.Designer.cs">
+      <DependentUpon>ArcGISAddinDWin.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreatePostData.cs" />
     <Compile Include="CSWSearch.cs" />
     <Compile Include="Config.Designer.cs">
@@ -128,6 +134,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ArcGISAddinDWin.resx">
+      <DependentUpon>ArcGISAddinDWin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCSW.resx">
       <DependentUpon>FormCSW.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,6 +157,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <AddInContent Include="Images\ArcGISAddinDWin.png" />
   </ItemGroup>
   <PropertyGroup>
     <ZipFileExtension>esriAddIn</ZipFileExtension>

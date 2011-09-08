@@ -5,6 +5,8 @@ using System.IO;
 
 using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Geodatabase;
+using ESRI.ArcGIS.Framework;
+using ESRI.ArcGIS.esriSystem;
 
 namespace ArcMapAddin1
 {
@@ -19,14 +21,32 @@ namespace ArcMapAddin1
             //
             //  TODO: Sample code showing how to access button host
             //
-            FormCSW fCSW = new FormCSW();
-            fCSW.Show();
+            //FormCSW fCSW = new FormCSW();
+            //fCSW.Show();
+            try
+            { 
+                IDockableWindow dWin = this.GetDockableWindow(ArcMap.Application, "Microsoft_ArcMapAddin1_ArcGISAddinDWin");
+                dWin.Show(!dWin.IsVisible());            
+            }
+            catch (Exception ex)
+            { throw ex; }
+       
+            
+
 
             ArcMap.Application.CurrentTool = null;
         }
         protected override void OnUpdate()
         {
             Enabled = ArcMap.Application != null;
+        }
+
+        public IDockableWindow GetDockableWindow(IApplication app, string winName)
+        {
+            IDockableWindowManager dWinManager = app as IDockableWindowManager;
+            UID winID = new UIDClass();
+            winID.Value = winName;
+            return dWinManager.GetDockableWindow(winID);
         }
     }
 
