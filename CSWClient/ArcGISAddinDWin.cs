@@ -92,5 +92,50 @@ namespace ArcMapAddin1
             btnSearch.Cursor = Cursors.Default;
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            ///Add wms services
+            if (pAddLayer.ServiceType == "WMS" || pAddLayer.ServiceType == "wms")
+            {
+                string strServiceLink = pAddLayer.ServerLink;
+
+                if (strServiceLink[strServiceLink.Length - 1] != '&' && strServiceLink[strServiceLink.Length - 1] != '?')
+                {
+                    strServiceLink += "?";
+                }
+
+                cSvcOpener.OpenWMS(strServiceLink);
+            }
+
+            //////////////////////////////////////
+            ///Add ArcGIS Rest services
+            ///cSvcOpener.OpenAGS(strServiceLink);
+            //////////////////////////////////////
+        }
+
+        private void lboxResults_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lboxResults.Cursor = Cursors.WaitCursor;
+
+            ///Read metadata information for the selected item
+            ListDataModel selectedItem = rList[lboxResults.SelectedIndex] as ListDataModel;
+            pAddLayer.ListDaModel = selectedItem;
+            pAddLayer.GetLayerInfo();
+
+            ///To identify if the service can be added into the map
+            if (pAddLayer.ServiceType == null)
+            {
+                btnAdd.Enabled = false;
+            }
+            else
+            {
+                btnAdd.Enabled = true;
+            }
+
+            lboxResults.Cursor = Cursors.Default;
+        }
+
+
+
     }
 }

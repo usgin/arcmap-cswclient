@@ -100,6 +100,7 @@
             this.lboxResults.Name = "lboxResults";
             this.lboxResults.Size = new System.Drawing.Size(254, 225);
             this.lboxResults.TabIndex = 5;
+            this.lboxResults.SelectedIndexChanged += new System.EventHandler(this.lboxResults_SelectedIndexChanged);
             // 
             // btnAdd
             // 
@@ -109,6 +110,7 @@
             this.btnAdd.TabIndex = 6;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // tboxAbstract
             // 
