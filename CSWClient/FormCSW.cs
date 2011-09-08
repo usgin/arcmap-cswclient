@@ -63,8 +63,8 @@ namespace ArcMapAddin1
             if (pAddLayer.ServiceType == "WMS" || pAddLayer.ServiceType == "wms")
             {
                 string strServiceLink = pAddLayer.ServerLink;
-                
-                if (strServiceLink[strServiceLink .Length -1] != '&')
+
+                if (strServiceLink[strServiceLink.Length - 1] != '&' && strServiceLink[strServiceLink.Length - 1] != '?')
                 {
                     strServiceLink += "?"; 
                 }
