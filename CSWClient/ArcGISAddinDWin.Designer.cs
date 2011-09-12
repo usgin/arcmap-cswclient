@@ -114,10 +114,10 @@
             // 
             // tboxAbstract
             // 
-            this.tboxAbstract.Enabled = false;
             this.tboxAbstract.Location = new System.Drawing.Point(25, 335);
             this.tboxAbstract.Multiline = true;
             this.tboxAbstract.Name = "tboxAbstract";
+            this.tboxAbstract.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tboxAbstract.Size = new System.Drawing.Size(253, 101);
             this.tboxAbstract.TabIndex = 7;
             // 

@@ -18,7 +18,8 @@ namespace ArcMapAddin1
         private ServiceOpener cSvcOpener = new ServiceOpener();
         private CSWSearch cCswSearch = new CSWSearch();
         private ArrayList rList = new ArrayList();
-        private AddLayer pAddLayer = new AddLayer();        
+        private AddLayer pAddLayer = new AddLayer();
+        private ListDataModel selectedItem = null;
 
         public ArcGISAddinDWin(object hook)
         {
@@ -27,6 +28,7 @@ namespace ArcMapAddin1
 
             cboSearchName.SelectedIndex = 0;
             cboMaxResults.SelectedIndex = 0;
+            tboxAbstract.ReadOnly = true;
         }
 
         /// <summary>
@@ -75,18 +77,20 @@ namespace ArcMapAddin1
 
             PostDataCriteria pPostDaCri = new PostDataCriteria();
 
-            pPostDaCri.SearchText = tboxSearchText.Text;
-            pPostDaCri.QueryName = cboSearchName.SelectedItem.ToString();
-            pPostDaCri.MaxRecords = cboMaxResults.SelectedItem.ToString();
+            ///Send search request////////////////////////////////////////
+            pPostDaCri.SearchText = tboxSearchText.Text; ///Set search key word
+            pPostDaCri.QueryName = cboSearchName.SelectedItem.ToString(); ///Set search name
+            pPostDaCri.MaxRecords = cboMaxResults.SelectedItem.ToString(); ///Set max number of results for search
             cCswSearch.CswRequest(pPostDaCri);
-
+            //////////////////////////////////////////////////////////////
+            
             rList = cCswSearch.DataList;
             lboxResults.Items.Clear();
 
             for (int i = 0; i < rList.Count; i++)
             {
                 ListDataModel list = rList[i] as ListDataModel;
-                lboxResults.Items.Add(list.Title);
+                lboxResults.Items.Add(list.Title); ///List search results
             }
 
             btnSearch.Cursor = Cursors.Default;
@@ -95,14 +99,11 @@ namespace ArcMapAddin1
         private void btnAdd_Click(object sender, EventArgs e)
         {
             ///Add wms services
-            if (pAddLayer.ServiceType == "WMS" || pAddLayer.ServiceType == "wms")
+            ///
+            
+            if (selectedItem.SvicType == "WMS")
             {
-                string strServiceLink = pAddLayer.ServerLink;
-
-                if (strServiceLink[strServiceLink.Length - 1] != '&' && strServiceLink[strServiceLink.Length - 1] != '?')
-                {
-                    strServiceLink += "?";
-                }
+                string strServiceLink = selectedItem.SvrUrl;
 
                 cSvcOpener.OpenWMS(strServiceLink);
             }
@@ -117,13 +118,14 @@ namespace ArcMapAddin1
         {
             lboxResults.Cursor = Cursors.WaitCursor;
 
-            ///Read metadata information for the selected item
-            ListDataModel selectedItem = rList[lboxResults.SelectedIndex] as ListDataModel;
-            pAddLayer.ListDaModel = selectedItem;
-            pAddLayer.GetLayerInfo();
+            ///Get info for the selected item
+            selectedItem = rList[lboxResults.SelectedIndex] as ListDataModel;
+
+            ///Add abstract into the text box
+            tboxAbstract.Text = selectedItem.Abstract;
 
             ///To identify if the service can be added into the map
-            if (pAddLayer.ServiceType == null)
+            if (selectedItem.SvicType == null)
             {
                 btnAdd.Enabled = false;
             }

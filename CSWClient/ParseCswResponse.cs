@@ -15,17 +15,13 @@ namespace ArcMapAddin1
         public string ResponseTxt
         {
             set
-            {
-                strResponseTxt = value;
-            }
+            { strResponseTxt = value; }
         }
 
         public ArrayList DataList
         {
             get
-            {
-                return rDataList;
-            }
+            { return rDataList; }
         }
 
         public void ParseResponse()
@@ -42,7 +38,7 @@ namespace ArcMapAddin1
             xnManager.AddNamespace("ows", "http://www.opengis.net/ows");
             xnManager.AddNamespace("xsd", "http://www.w3.org/2001/XMLSchema");
 
-            XmlNodeList ndMDaList = xDoc.SelectNodes("//csw:SearchResults/csw:BriefRecord", xnManager);
+            XmlNodeList ndMDaList = xDoc.SelectNodes("//csw:SearchResults/csw:Record", xnManager);
   
             ParseSearchResults(ndMDaList, xnManager);
 
@@ -64,21 +60,52 @@ namespace ArcMapAddin1
         {
             ListDataModel lstData = new ListDataModel();
 
+            ///Get record title info
             XmlNode ndTitle = nd.SelectSingleNode("dc:title", xnManager);
             lstData.Title = ndTitle.InnerText;
 
-            XmlNodeList ndRefList = nd.SelectNodes("dc:identifier", xnManager);
-            for (int iRef = ndRefList.Count - 1; iRef >= 0; iRef --)
-            {
-                XmlNode ndRef = ndRefList.Item(iRef);
+            ///Get metadata id info
+            XmlNodeList ndIdentifierList = nd.SelectNodes("dc:identifier", xnManager);
+            XmlNode ndMetaDaId = ndIdentifierList[1] ;
+            lstData.MetadataId = ndMetaDaId.InnerText; 
 
-                if (ndRef.Attributes.Item(0).InnerText.Contains("Metadata:DocID"))
+            ///Get abstract info
+            XmlNode ndAbstract = nd.SelectSingleNode("dct:abstract", xnManager);
+            lstData.Abstract = ndAbstract.InnerText;
+
+            ///Get the link of service and service type
+            XmlNodeList ndRefList = nd.SelectNodes("dct:references", xnManager);
+            string urlCapabilities;
+            try
+            {
+                if (ndRefList != null)
                 {
-                    lstData.MetadataUrl = ndRef.InnerText;
-                    break;
+                    for (int iRef = 0; iRef < ndRefList.Count; iRef++)
+                    {
+                        XmlNode ndRef = ndRefList[iRef];
+                        if (ndRef.InnerText.Contains("Capabilities") || ndRef.InnerText.Contains("capabilities"))
+                        {
+                            urlCapabilities = ndRef.InnerText;
+                            if (urlCapabilities.Contains("=WMS")) 
+                            { lstData.SvicType = "WMS"; } ///Identify the service type
+
+                            string[] rUrlCapabilities = urlCapabilities.Split('?');
+
+                            lstData.SvrUrl = rUrlCapabilities[0] + '?';
+
+                            if (rUrlCapabilities[1].Contains("map="))
+                            {
+                                string[] urlProperties = rUrlCapabilities[1].Split('&');
+                                lstData.SvrUrl += urlProperties[0] + '&';
+                            }
+                        }
+                    }
                 }
 
             }
+            catch (Exception ex)
+            { throw ex; }
+           
 
             return lstData;
         }

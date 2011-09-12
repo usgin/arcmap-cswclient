@@ -9,16 +9,22 @@ using System.Collections;
 
 namespace ArcMapAddin1
 {
+    /// <summary>
+    /// We do not use this class in this application
+    /// This class is to get metadata info from matadata doc
+    /// </summary>
     class AddLayer
     {
         private ListDataModel cListDaModel;
         private string strServerLink;
         private string strServiceType;
+        private string strServiceAbstract;
 
         public ListDataModel ListDaModel
         {
             set { cListDaModel = value; }
         }
+
 
         public string ServerLink
         {
@@ -30,12 +36,17 @@ namespace ArcMapAddin1
             get { return strServiceType; }
         }
 
+        public string ServiceAbstract
+        {
+            get { return strServiceAbstract; }
+        }
+        
         public void GetLayerInfo()
         {
             //MessageBox.Show(cListDaModel.MetadataUrl);
 
             ///Send metadata request and get response string 
-            HttpWebResponse metaDataResponse = MetaDataRequest(this.cListDaModel.MetadataUrl);
+            HttpWebResponse metaDataResponse = MetaDataRequest(this.cListDaModel.MetadataId);
             string mataDataResponseTxt = MetaDataResponseString(metaDataResponse);
 
             ///Parse metadata response
@@ -46,6 +57,9 @@ namespace ArcMapAddin1
             strServerLink = pParseMetaDaRp.ServerLink;
             ///Get the service type
             strServiceType = pParseMetaDaRp.ServiceType;
+            ///Get the service abstract
+            strServiceAbstract = pParseMetaDaRp.ServiceAbstract;
+
         }
 
         public HttpWebResponse MetaDataRequest(string pDocID)

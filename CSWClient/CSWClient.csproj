@@ -101,12 +101,6 @@
       <DependentUpon>Config.esriaddinx</DependentUpon>
     </Compile>
     <Compile Include="Envelope.cs" />
-    <Compile Include="FormCSW.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormCSW.Designer.cs">
-      <DependentUpon>FormCSW.cs</DependentUpon>
-    </Compile>
     <Compile Include="ListDataModel.cs" />
     <Compile Include="ParseCswResponse.cs" />
     <Compile Include="ParseMetaDataResponse.cs" />
@@ -136,9 +130,6 @@
   <ItemGroup>
     <EmbeddedResource Include="ArcGISAddinDWin.resx">
       <DependentUpon>ArcGISAddinDWin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormCSW.resx">
-      <DependentUpon>FormCSW.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

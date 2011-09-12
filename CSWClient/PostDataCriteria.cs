@@ -11,6 +11,7 @@ namespace ArcMapAddin1
         private string _serviceType;
         private string _queryName;
         private string _searchText;
+        private string _abstract;
         private Boolean _isLiveDataAndMapOnly;
         private Envelope _envelope;
 
@@ -36,6 +37,12 @@ namespace ArcMapAddin1
         {
             set { _searchText = value; }
             get { return _searchText; }
+        }
+
+        public string Abstract
+        {
+            set { _abstract = value; }
+            get { return _abstract; }
         }
 
         public Boolean IsLiveDataAndMapOnly

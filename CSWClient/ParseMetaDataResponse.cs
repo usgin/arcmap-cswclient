@@ -11,6 +11,7 @@ namespace ArcMapAddin1
     {
         private string strServerLink = null;
         private string strServiceType = null;
+        private string strServiceAbstract = null;
 
         public string ServerLink
         {
@@ -22,6 +23,12 @@ namespace ArcMapAddin1
         {
             get
             { return strServiceType; }
+        }
+
+        public string ServiceAbstract
+        {
+            get
+            { return strServiceAbstract; }
         }
 
         public void ParseMetaDataXml(string strMetaDataXml)
@@ -47,6 +54,21 @@ namespace ArcMapAddin1
                 strServerLink = ndServerLink.InnerText;
                 strServiceType = ndServiceType.InnerText;
             }
+
+            XmlNode ndServiceAbstract = xMetaData.SelectSingleNode("//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:abstract/gco:CharacterString", xnsManager);
+            if (ndServiceAbstract == null)
+            {
+                ndServiceAbstract = xMetaData.SelectSingleNode("/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract/gco:CharacterString", xnsManager);
+            }
+            if (ndServiceAbstract != null)
+            {
+                strServiceAbstract = ndServiceAbstract.InnerText;
+            }
+            else
+            {
+                strServiceAbstract = "missing";
+            }
+            
         }
     }
 }

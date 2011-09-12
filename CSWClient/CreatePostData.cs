@@ -35,7 +35,7 @@ namespace ArcMapAddin1
 
                 pBuilder.Append("<csw:Query typeNames='csw:Record' xmlns:ogc='http://www.opengis.net/ogc' xmlns:gml='http://www.opengis.net/gml'>");
                 pBuilder.Append("<csw:ElementSetName>");
-                pBuilder.Append("brief");
+                pBuilder.Append("full");
                 pBuilder.Append("</csw:ElementSetName>");
                 pBuilder.Append("<csw:Constraint version='1.1.0'>");
                 pBuilder.Append("<ogc:Filter>");

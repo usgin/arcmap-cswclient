@@ -7,15 +7,18 @@ namespace ArcMapAddin1
 {
     class ListDataModel
     {
-        private string strMetadataUrl;
+        private string strMetadataId;
         private string strTitle;
+        private string strSvrUrl;
+        private string strAbstract;
+        private string strSvicType;
 
-        public string MetadataUrl
+        public string MetadataId
         {
             set
-            { strMetadataUrl = value; }
+            { strMetadataId = value; }
             get
-            { return strMetadataUrl; }
+            { return strMetadataId; }
         }
 
         public string Title
@@ -24,6 +27,30 @@ namespace ArcMapAddin1
             { strTitle = value; }
             get
             { return strTitle; }
+        }
+
+        public string Abstract
+        {
+            set
+            { strAbstract = value; }
+            get
+            { return strAbstract; }
+        }
+
+        public string SvrUrl
+        {
+            set
+            { strSvrUrl = value; }
+            get
+            { return strSvrUrl; }
+        }
+
+        public string SvicType
+        {
+            set
+            { strSvicType = value; }
+            get
+            { return strSvicType; }
         }
     }
 }
