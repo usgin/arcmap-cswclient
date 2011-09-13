@@ -7,6 +7,7 @@ namespace ArcMapAddin1
 {
     class PostDataCriteria
     {
+        private string _startPosition;
         private string _maxRecords;
         private string _serviceType;
         private string _queryName;
@@ -15,6 +16,12 @@ namespace ArcMapAddin1
         private Boolean _isLiveDataAndMapOnly;
         private Envelope _envelope;
 
+        public string StartPosition
+        {
+            set { _startPosition = value; }
+            get { return _startPosition; }
+        }
+        
         public string MaxRecords
         {
             set { _maxRecords = value; }

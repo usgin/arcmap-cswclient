@@ -12,6 +12,7 @@ namespace ArcMapAddin1
     /// <summary>
     /// We do not use this class in this application
     /// This class is to get metadata info from matadata doc
+    /// We do not use ParseMetaDataResponse either
     /// </summary>
     class AddLayer
     {

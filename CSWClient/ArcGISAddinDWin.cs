@@ -20,6 +20,8 @@ namespace ArcMapAddin1
         private ArrayList rList = new ArrayList();
         private AddLayer pAddLayer = new AddLayer();
         private ListDataModel selectedItem = null;
+        private PostDataCriteria pPostDaCri = new PostDataCriteria();
+        private PageSwitchCriteria pPageSwitchCri = new PageSwitchCriteria();
 
         public ArcGISAddinDWin(object hook)
         {
@@ -27,8 +29,13 @@ namespace ArcMapAddin1
             this.Hook = hook;
 
             cboSearchName.SelectedIndex = 0;
-            cboMaxResults.SelectedIndex = 0;
+            //cboMaxResults.SelectedIndex = 0;
             tboxAbstract.ReadOnly = true;
+            lbPrePage.Cursor = Cursors.Hand;
+            lbNxtPage.Cursor = Cursors.Hand;
+
+            lbPrePage.Enabled = false;
+            lbNxtPage.Enabled = false;
         }
 
         /// <summary>
@@ -75,15 +82,27 @@ namespace ArcMapAddin1
 
             cCswSearch.CswUrl = tboxSearchText.Text;
 
-            PostDataCriteria pPostDaCri = new PostDataCriteria();
+            pPageSwitchCri.StartPosition = 1; ///Set the start position for page switcher
 
             ///Send search request////////////////////////////////////////
             pPostDaCri.SearchText = tboxSearchText.Text; ///Set search key word
             pPostDaCri.QueryName = cboSearchName.SelectedItem.ToString(); ///Set search name
-            pPostDaCri.MaxRecords = cboMaxResults.SelectedItem.ToString(); ///Set max number of results for search
+            pPostDaCri.StartPosition = pPageSwitchCri.StartPosition.ToString(); ///Set start position for search
             cCswSearch.CswRequest(pPostDaCri);
             //////////////////////////////////////////////////////////////
+
+            lbNumRecords.Text = "Found " + cCswSearch.NumRecords + " Records";
+
+            int numRecords = Convert.ToInt32(cCswSearch.NumRecords);
+
+            pPageSwitchCri.NumPages = numRecords / 15; ///Set the total number of pages for page switcher
+
+            if (pPageSwitchCri.NumPages > 0) { lbNxtPage.Enabled = true; } ///Enable the next page function
             
+            lbPage.Text = "Page" + "1" + "/" + pPageSwitchCri.NumPages.ToString();
+
+            pPageSwitchCri.CurrentPage = 1; ///Set the current page number for page switcher
+                       
             rList = cCswSearch.DataList;
             lboxResults.Items.Clear();
 
@@ -137,6 +156,87 @@ namespace ArcMapAddin1
             lboxResults.Cursor = Cursors.Default;
         }
 
+
+
+/******* Page switch functions****************************************************/
+
+
+        /// Previouse page//////////////////////////////////////
+        private void lbPrePage_Click(object sender, EventArgs e)
+        {
+            lbPrePage.Cursor = Cursors.WaitCursor;
+
+            ///Set new start position
+            if (pPageSwitchCri.CurrentPage > 1)
+            {
+                pPageSwitchCri.CurrentPage -= 1; ///Set current page number
+                pPageSwitchCri.StartPosition -= 15; ///Set request start position 
+
+                RefreshSearchResults(pPageSwitchCri.CurrentPage, pPageSwitchCri.StartPosition, pPageSwitchCri.NumPages);
+
+                if (pPageSwitchCri.CurrentPage < pPageSwitchCri.NumPages) ///Enable the next page function if this is not the last page
+                { lbNxtPage.Enabled = true; }
+
+                if (pPageSwitchCri.CurrentPage == 1) ///Disable the next page function if this is the first page
+                { lbPrePage.Enabled = false; }
+
+            }
+            else
+            {
+                lbPrePage.Enabled = false;
+                return;
+            }
+
+            lbPrePage.Cursor = Cursors.Hand;
+        }
+
+        /// Next page///////////////////////////////////////////
+        private void lbNxtPage_Click(object sender, EventArgs e)
+        {
+            lbNxtPage.Cursor = Cursors.WaitCursor;
+
+            ///Set new start position
+            if (pPageSwitchCri.CurrentPage < pPageSwitchCri.NumPages)
+            {
+                pPageSwitchCri.CurrentPage += 1; ///Set current page number
+                pPageSwitchCri.StartPosition += 15; ///Set request start position 
+
+                RefreshSearchResults(pPageSwitchCri.CurrentPage, pPageSwitchCri.StartPosition, pPageSwitchCri.NumPages);
+
+                if (pPageSwitchCri.CurrentPage > 1) ///Enable the previous page function if this is not the first page
+                { lbPrePage.Enabled = true; }
+
+                if (pPageSwitchCri.CurrentPage == pPageSwitchCri.NumPages) ///Disable the next page function if this is the last page
+                { lbNxtPage.Enabled = false; }
+
+            }
+            else
+            {
+                lbNxtPage.Enabled = false;
+                return;
+            }
+
+            lbNxtPage.Cursor = Cursors.Hand;
+        }
+
+        private void RefreshSearchResults(int currentPage, int startPosition, int numPages)
+        {
+            pPostDaCri.StartPosition = startPosition.ToString(); ///Set start position for the post data of request          
+
+            cCswSearch.CswRequest(pPostDaCri);
+
+            lbPage.Text = "Page " + currentPage.ToString() + "/" + numPages.ToString();
+
+            rList = cCswSearch.DataList;
+            lboxResults.Items.Clear();
+
+            for (int i = 0; i < rList.Count; i++)
+            {
+                ListDataModel list = rList[i] as ListDataModel;
+                lboxResults.Items.Add(list.Title); ///List search results
+            }
+ 
+        }
 
 
     }

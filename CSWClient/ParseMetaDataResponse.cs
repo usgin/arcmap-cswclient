@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace ArcMapAddin1
 {
+    /// <summary>
+    /// We do not use this class
+    /// </summary>
     class ParseMetaDataResponse
     {
         private string strServerLink = null;

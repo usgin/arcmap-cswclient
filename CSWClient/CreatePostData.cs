@@ -27,7 +27,9 @@ namespace ArcMapAddin1
             {
                 StringBuilder pBuilder = new StringBuilder();
 
-                pBuilder.Append("<csw:GetRecords xmlns:csw='http://www.opengis.net/cat/csw/2.0.2' version='2.0.2' service='CSW' resultType='results' startPosition='1' ");
+                pBuilder.Append("<csw:GetRecords xmlns:csw='http://www.opengis.net/cat/csw/2.0.2' version='2.0.2' service='CSW' resultType='results' ");
+
+                StartPosition(pBuilder); ///Set the start position for request
 
                 MaxResults(pBuilder); ///Set max number of results shown in the list box
 
@@ -63,6 +65,14 @@ namespace ArcMapAddin1
 
         }
 
+        private void StartPosition(StringBuilder pBuilder)
+        {
+            pBuilder.Append("startPosition=");
+            pBuilder.Append("'" + pPostDataCriteria.StartPosition + "'");
+            pBuilder.Append(" ");
+
+        }
+
         private void SearchText(StringBuilder pBuilder)
         {
             pBuilder.Append("<ogc:PropertyIsLike wildCard='*' escape='\' singleChar='?'>");
@@ -81,7 +91,7 @@ namespace ArcMapAddin1
 
         private void MaxResults(StringBuilder pBuilder)
         {
-            pBuilder.Append("maxRecords='" + pPostDataCriteria.MaxRecords + "'");
+            pBuilder.Append("maxRecords='15'");
         }
 
         private void BoundingBox(StringBuilder pBuilder)

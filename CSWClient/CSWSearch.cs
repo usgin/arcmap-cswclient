@@ -21,6 +21,7 @@ namespace ArcMapAddin1
         private string strPostDa;
         private string strResponseTxt;
         private ArrayList rDataList;
+        private string strNumRecords;
 
         public string CswUrl 
         {
@@ -45,6 +46,13 @@ namespace ArcMapAddin1
             get
             { return rDataList; }
         }
+
+        public string NumRecords
+        {
+            get
+            { return strNumRecords; }
+        }
+
 
         public void CswRequest(PostDataCriteria pPostDaCri)
         {
@@ -89,6 +97,9 @@ namespace ArcMapAddin1
 
                 ///List all the services
                 rDataList = cPCswRp.DataList;
+
+                ///Other values needed in dockable window
+                strNumRecords = cPCswRp.NumRecords;
 
             }
             catch (Exception ex)

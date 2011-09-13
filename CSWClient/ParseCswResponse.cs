@@ -10,12 +10,19 @@ namespace ArcMapAddin1
     class ParseCswResponse
     {
         private string strResponseTxt;
+        private string strNumRecords;
         private ArrayList rDataList = new ArrayList();
 
         public string ResponseTxt
         {
             set
             { strResponseTxt = value; }
+        }
+
+        public string NumRecords
+        {
+            get
+            { return strNumRecords; }
         }
 
         public ArrayList DataList
@@ -38,6 +45,9 @@ namespace ArcMapAddin1
             xnManager.AddNamespace("ows", "http://www.opengis.net/ows");
             xnManager.AddNamespace("xsd", "http://www.w3.org/2001/XMLSchema");
 
+            XmlNode ndNumRecords = xDoc.SelectSingleNode("/csw:GetRecordsResponse/csw:SearchResults/@numberOfRecordsMatched", xnManager);
+            strNumRecords = ndNumRecords.InnerText;
+            
             XmlNodeList ndMDaList = xDoc.SelectNodes("//csw:SearchResults/csw:Record", xnManager);
   
             ParseSearchResults(ndMDaList, xnManager);
@@ -83,7 +93,7 @@ namespace ArcMapAddin1
                     for (int iRef = 0; iRef < ndRefList.Count; iRef++)
                     {
                         XmlNode ndRef = ndRefList[iRef];
-                        if (ndRef.InnerText.Contains("Capabilities") || ndRef.InnerText.Contains("capabilities"))
+                        if (ndRef.InnerText.Contains("GetCapabilities") || ndRef.InnerText.Contains("getcapabilities"))
                         {
                             urlCapabilities = ndRef.InnerText;
                             if (urlCapabilities.Contains("=WMS")) 
@@ -98,6 +108,8 @@ namespace ArcMapAddin1
                                 string[] urlProperties = rUrlCapabilities[1].Split('&');
                                 lstData.SvrUrl += urlProperties[0] + '&';
                             }
+
+                            break;
                         }
                     }
                 }
