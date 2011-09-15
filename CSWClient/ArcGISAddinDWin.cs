@@ -36,6 +36,8 @@ namespace ArcMapAddin1
 
             lbPrePage.Enabled = false;
             lbNxtPage.Enabled = false;
+
+            btnMetaDoc.Enabled = false;
         }
 
         /// <summary>
@@ -143,15 +145,17 @@ namespace ArcMapAddin1
             ///Add abstract into the text box
             tboxAbstract.Text = selectedItem.Abstract;
 
-            ///To identify if the service can be added into the map
+            ///Identify if the service can be added into the map
             if (selectedItem.SvicType == null)
-            {
-                btnAdd.Enabled = false;
-            }
+            { btnAdd.Enabled = false; }
             else
-            {
-                btnAdd.Enabled = true;
-            }
+            { btnAdd.Enabled = true; }
+
+            ///Identify if the metadata document exists
+            if (selectedItem.MetadataId == null)
+            { btnMetaDoc.Enabled = false; }
+            else
+            { btnMetaDoc.Enabled = true; }
 
             lboxResults.Cursor = Cursors.Default;
         }
@@ -236,6 +240,16 @@ namespace ArcMapAddin1
                 lboxResults.Items.Add(list.Title); ///List search results
             }
  
+        }
+
+/*******Get Metadata Info***********************************************************/
+        private void btnMetaDoc_Click(object sender, EventArgs e)
+        {
+            string urlMetaDoc = "http://catalog.usgin.org/geoportal/rest/document?id=" + selectedItem.MetadataId;
+
+            XmlVisualizerWin pXmlVisualizer = new XmlVisualizerWin();
+            pXmlVisualizer.UrlMetaDoc = urlMetaDoc;
+            pXmlVisualizer.Show();
         }
 
 

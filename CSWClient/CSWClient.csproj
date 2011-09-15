@@ -102,6 +102,7 @@
     </Compile>
     <Compile Include="Envelope.cs" />
     <Compile Include="ListDataModel.cs" />
+    <Compile Include="MetadataDoc.cs" />
     <Compile Include="PageSwitchCriteria.cs" />
     <Compile Include="ParseCswResponse.cs" />
     <Compile Include="ParseMetaDataResponse.cs" />
@@ -113,6 +114,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ServiceOpener.cs" />
+    <Compile Include="XmlVisualizer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XmlVisualizer.Designer.cs">
+      <DependentUpon>XmlVisualizer.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AddInContent Include="Config.esriaddinx">
@@ -141,6 +148,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XmlVisualizer.resx">
+      <DependentUpon>XmlVisualizer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

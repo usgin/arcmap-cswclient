@@ -38,6 +38,7 @@
             this.lbPrePage = new System.Windows.Forms.Label();
             this.lbNxtPage = new System.Windows.Forms.Label();
             this.lbPage = new System.Windows.Forms.Label();
+            this.btnMetaDoc = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cboSearchName
@@ -137,8 +138,19 @@
             this.lbPage.TabIndex = 11;
             this.lbPage.Text = "Page 0/0";
             // 
+            // btnMetaDoc
+            // 
+            this.btnMetaDoc.Location = new System.Drawing.Point(25, 451);
+            this.btnMetaDoc.Name = "btnMetaDoc";
+            this.btnMetaDoc.Size = new System.Drawing.Size(75, 23);
+            this.btnMetaDoc.TabIndex = 12;
+            this.btnMetaDoc.Text = "MetaData ";
+            this.btnMetaDoc.UseVisualStyleBackColor = true;
+            this.btnMetaDoc.Click += new System.EventHandler(this.btnMetaDoc_Click);
+            // 
             // ArcGISAddinDWin
             // 
+            this.Controls.Add(this.btnMetaDoc);
             this.Controls.Add(this.lbPage);
             this.Controls.Add(this.lbNxtPage);
             this.Controls.Add(this.lbPrePage);
@@ -168,6 +180,7 @@
         private System.Windows.Forms.Label lbPrePage;
         private System.Windows.Forms.Label lbNxtPage;
         private System.Windows.Forms.Label lbPage;
+        private System.Windows.Forms.Button btnMetaDoc;
 
 
     }
