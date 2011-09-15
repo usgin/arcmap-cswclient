@@ -33,6 +33,9 @@
             // 
             // tviewXml
             // 
+            this.tviewXml.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tviewXml.Location = new System.Drawing.Point(13, 13);
             this.tviewXml.Name = "tviewXml";
             this.tviewXml.Size = new System.Drawing.Size(259, 237);
@@ -45,8 +48,7 @@
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.tviewXml);
             this.Name = "XmlVisualizerWin";
-            this.Text = "XmlVisualizer";
-            this.Shown += new System.EventHandler(this.XmlVisualizerWin_Shown);
+            this.Text = "XmlVisualizerWin";
             this.ResumeLayout(false);
 
         }

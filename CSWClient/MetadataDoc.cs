@@ -22,7 +22,7 @@ namespace ArcMapAddin1
 
             FormatXml(metaDataResponseTxt);
         }
-        public HttpWebResponse MetaDataRequest(string strMetaDataUrl)
+        private HttpWebResponse MetaDataRequest(string strMetaDataUrl)
         {
             Uri metaDataUri = new Uri(strMetaDataUrl);
             HttpWebRequest metaDataRequest = (HttpWebRequest)WebRequest.Create(metaDataUri);
@@ -42,7 +42,7 @@ namespace ArcMapAddin1
             return response;
         }
 
-        public string MetaDataResponseString(HttpWebResponse response)
+        private string MetaDataResponseString(HttpWebResponse response)
         {
             Stream responseStream = response.GetResponseStream();
             StreamReader responseReader = new StreamReader(responseStream);
@@ -52,7 +52,7 @@ namespace ArcMapAddin1
             return strResponse;
         }
 
-        public void FormatXml(string xml)
+        private void FormatXml(string xml)
         {
             tXmlView.Nodes.Clear();
 

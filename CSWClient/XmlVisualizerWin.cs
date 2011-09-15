@@ -24,11 +24,10 @@ namespace ArcMapAddin1
             InitializeComponent();
         }
 
-        private void XmlVisualizerWin_Shown(object sender, EventArgs e)
+        public void ListMetaDocXml()
         {
             MetadataDoc cMetadataDoc = new MetadataDoc();
             cMetadataDoc.GetMetadataDoc(strUrlMetaDoc, tviewXml);
-
         }
     }
 }

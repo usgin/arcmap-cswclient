@@ -249,6 +249,7 @@ namespace ArcMapAddin1
 
             XmlVisualizerWin pXmlVisualizer = new XmlVisualizerWin();
             pXmlVisualizer.UrlMetaDoc = urlMetaDoc;
+            pXmlVisualizer.ListMetaDocXml();
             pXmlVisualizer.Show();
         }
 
