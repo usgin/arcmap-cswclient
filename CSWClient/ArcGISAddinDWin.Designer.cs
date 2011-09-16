@@ -57,6 +57,8 @@
             // 
             // tboxSearchText
             // 
+            this.tboxSearchText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxSearchText.Location = new System.Drawing.Point(115, 23);
             this.tboxSearchText.Name = "tboxSearchText";
             this.tboxSearchText.Size = new System.Drawing.Size(104, 20);
@@ -64,6 +66,8 @@
             // 
             // lboxResults
             // 
+            this.lboxResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lboxResults.FormattingEnabled = true;
             this.lboxResults.Location = new System.Drawing.Point(22, 95);
             this.lboxResults.Name = "lboxResults";
@@ -73,6 +77,7 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Location = new System.Drawing.Point(216, 451);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
@@ -83,6 +88,8 @@
             // 
             // tboxAbstract
             // 
+            this.tboxAbstract.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxAbstract.Location = new System.Drawing.Point(22, 313);
             this.tboxAbstract.Multiline = true;
             this.tboxAbstract.Name = "tboxAbstract";
@@ -92,6 +99,7 @@
             // 
             // btnSearch
             // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.Location = new System.Drawing.Point(236, 20);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(54, 23);
@@ -111,6 +119,7 @@
             // 
             // lbPrePage
             // 
+            this.lbPrePage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbPrePage.AutoSize = true;
             this.lbPrePage.Location = new System.Drawing.Point(184, 64);
             this.lbPrePage.Name = "lbPrePage";
@@ -121,6 +130,7 @@
             // 
             // lbNxtPage
             // 
+            this.lbNxtPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbNxtPage.AutoSize = true;
             this.lbNxtPage.Location = new System.Drawing.Point(271, 64);
             this.lbNxtPage.Name = "lbNxtPage";
@@ -131,6 +141,7 @@
             // 
             // lbPage
             // 
+            this.lbPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbPage.AutoSize = true;
             this.lbPage.Location = new System.Drawing.Point(213, 64);
             this.lbPage.Name = "lbPage";

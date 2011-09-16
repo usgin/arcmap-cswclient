@@ -28,6 +28,7 @@ namespace ArcMapAddin1
         {
             MetadataDoc cMetadataDoc = new MetadataDoc();
             cMetadataDoc.GetMetadataDoc(strUrlMetaDoc, tviewXml);
+            tviewXml.ExpandAll();
         }
     }
 }

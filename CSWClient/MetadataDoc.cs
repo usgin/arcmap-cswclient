@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.IO;
 using System.Collections;
+using System.Drawing;
 
 namespace ArcMapAddin1
 {
@@ -67,27 +68,32 @@ namespace ArcMapAddin1
           TreeNodeCollection treeNodes)
         {
 
-            TreeNode newTreeNode = treeNodes.Add(xmlNode.Name);
+            TreeNode newTreeNode = treeNodes.Add("Metadata Document");
+            newTreeNode.ForeColor = Color.Blue;
 
             switch (xmlNode.NodeType)
             {
                 case XmlNodeType.ProcessingInstruction:
                 case XmlNodeType.XmlDeclaration:
-                    newTreeNode.Text = "<?" + xmlNode.Name + " " +
-                      xmlNode.Value + "?>";
+                    newTreeNode.Text = "<?" + xmlNode.Name + " " + xmlNode.Value + "?>";
+                    newTreeNode.ForeColor = Color.Black;
                     break;
                 case XmlNodeType.Element:
                     newTreeNode.Text = "<" + xmlNode.Name + ">";
+                    newTreeNode.ForeColor = Color.Blue;
                     break;
                 case XmlNodeType.Attribute:
-                    newTreeNode.Text = "ATTRIBUTE: " + xmlNode.Name;
+                    newTreeNode.Text = xmlNode.Name;
+                    newTreeNode.ForeColor = Color.DarkRed;
                     break;
                 case XmlNodeType.Text:
                 case XmlNodeType.CDATA:
                     newTreeNode.Text = xmlNode.Value;
+                    newTreeNode.ForeColor = Color.Black;
                     break;
                 case XmlNodeType.Comment:
                     newTreeNode.Text = "<!--" + xmlNode.Value + "-->";
+                    newTreeNode.ForeColor = Color.Gray;
                     break;
             }
 

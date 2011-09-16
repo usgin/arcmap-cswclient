@@ -245,12 +245,17 @@ namespace ArcMapAddin1
 /*******Get Metadata Info***********************************************************/
         private void btnMetaDoc_Click(object sender, EventArgs e)
         {
+            btnMetaDoc.Cursor = Cursors.WaitCursor;
+
             string urlMetaDoc = "http://catalog.usgin.org/geoportal/rest/document?id=" + selectedItem.MetadataId;
 
             XmlVisualizerWin pXmlVisualizer = new XmlVisualizerWin();
             pXmlVisualizer.UrlMetaDoc = urlMetaDoc;
             pXmlVisualizer.ListMetaDocXml();
+            pXmlVisualizer.Text = selectedItem.Title;
             pXmlVisualizer.Show();
+
+            btnMetaDoc.Cursor = Cursors.Default;
         }
 
 
