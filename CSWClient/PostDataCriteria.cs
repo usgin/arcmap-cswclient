@@ -13,7 +13,8 @@ namespace ArcMapAddin1
         private string _queryName;
         private string _searchText;
         private string _abstract;
-        private Boolean _isLiveDataAndMapOnly;
+        private Boolean _isLiveDataOnly;
+        private Boolean _isWmsOnly;
         private Envelope _envelope;
 
         public string StartPosition
@@ -52,10 +53,10 @@ namespace ArcMapAddin1
             get { return _abstract; }
         }
 
-        public Boolean IsLiveDataAndMapOnly
+        public Boolean IsLiveDataOnly
         {
-            set { _isLiveDataAndMapOnly = value; }
-            get { return _isLiveDataAndMapOnly; }
+            set { _isLiveDataOnly = value; }
+            get { return _isLiveDataOnly; }
         }
 
         public Envelope Envelope
@@ -64,5 +65,10 @@ namespace ArcMapAddin1
             get { return _envelope; }
         }
 
+        public Boolean IsWmsOnly
+        {
+            set { _isWmsOnly = value; }
+            get { return _isWmsOnly; }
+        }
     }
 }

@@ -90,9 +90,12 @@ namespace ArcMapAddin1
             pPostDaCri.SearchText = tboxSearchText.Text; ///Set search key word
             pPostDaCri.QueryName = cboSearchName.SelectedItem.ToString(); ///Set search name
             pPostDaCri.StartPosition = pPageSwitchCri.StartPosition.ToString(); ///Set start position for search
+            pPostDaCri.IsWmsOnly = cboxWms.Checked; ///Define if the search is only for wms service           
+            pPostDaCri.IsLiveDataOnly = cboxLivedata.Checked; ///Define if the search is only for live data
             cCswSearch.CswRequest(pPostDaCri);
             //////////////////////////////////////////////////////////////
 
+            ///Set value for number of records and page switcher/////////////////////////////
             lbNumRecords.Text = "Found " + cCswSearch.NumRecords + " Records";
 
             int numRecords = Convert.ToInt32(cCswSearch.NumRecords);
@@ -104,16 +107,19 @@ namespace ArcMapAddin1
             lbPage.Text = "Page" + "1" + "/" + pPageSwitchCri.NumPages.ToString();
 
             pPageSwitchCri.CurrentPage = 1; ///Set the current page number for page switcher
-                       
+            /////////////////////////////////////////////////////////////////////////////////
+           
+            ///List Results/////////////////////////////////////////////
             rList = cCswSearch.DataList;
             lboxResults.Items.Clear();
 
             for (int i = 0; i < rList.Count; i++)
             {
                 ListDataModel list = rList[i] as ListDataModel;
-                lboxResults.Items.Add(list.Title); ///List search results
+                lboxResults.Items.Add(list.Title); ///List all services
             }
 
+            ////////////////////////////////////////////////////////////
             btnSearch.Cursor = Cursors.Default;
         }
 
@@ -256,6 +262,11 @@ namespace ArcMapAddin1
             pXmlVisualizer.Show();
 
             btnMetaDoc.Cursor = Cursors.Default;
+        }
+
+        private void cboxWms_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
 

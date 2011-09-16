@@ -46,6 +46,9 @@ namespace ArcMapAddin1
 
                 SearchText(pBuilder); ///Set search criterias, including search key word and search area
 
+                if (pPostDaCri.IsLiveDataOnly) { SearchForLiveDataOnly(pBuilder); } ///Define if only search live data
+                if (pPostDaCri.IsWmsOnly) { SearchForWmsOnly(pBuilder); } ///Define if only search wms services
+                
                 BoundingBox(pBuilder); ///Set bounding box
 
                 pBuilder.Append("</ogc:And>");
@@ -109,6 +112,22 @@ namespace ArcMapAddin1
             pBuilder.Append("</gml:upperCorner>");
             pBuilder.Append("</gml:Envelope>");
             pBuilder.Append("</ogc:BBOX>");            
+        }
+
+        private void SearchForWmsOnly(StringBuilder pBuilder)
+        {
+            pBuilder.Append("<ogc:PropertyIsEqualTo>");
+            pBuilder.Append("<ogc:PropertyName>apiso:ServiceType</ogc:PropertyName>");
+            pBuilder.Append("<ogc:Literal>wms</ogc:Literal>");
+            pBuilder.Append("</ogc:PropertyIsEqualTo>");
+        }
+
+        private void SearchForLiveDataOnly(StringBuilder pBuilder)
+        {
+            pBuilder.Append("<ogc:PropertyIsEqualTo>");
+            pBuilder.Append("<ogc:PropertyName>Type</ogc:PropertyName>");
+            pBuilder.Append("<ogc:Literal>liveData</ogc:Literal>");
+            pBuilder.Append("</ogc:PropertyIsEqualTo>");
         }
 
         
