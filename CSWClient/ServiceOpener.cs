@@ -27,13 +27,30 @@ namespace ArcMapAddin1
     /// <param name="pLayer"></param>
         private void AddLayer(ILayer pLayer)
         {
+            VisibleSubLayers(pLayer);
             ///Add layer to Map
             IMxDocument pMxDoc = ArcMap.Document;
             pMxDoc.FocusMap.AddLayer(pLayer);
-
+            
             ///Refresh
             IActiveView pActiveView = pMxDoc.FocusMap as IActiveView;
             pActiveView.Refresh();
+        }
+
+        private void VisibleSubLayers(ILayer pSvicLayer)
+        {
+            ICompositeLayer2 pSubLayer = pSvicLayer as ICompositeLayer2;
+
+            if (pSubLayer != null)
+            {
+                for (int i = 0; i < pSubLayer.Count; i ++)
+                {
+                    VisibleSubLayers(pSubLayer.get_Layer(i));
+                }
+            }
+
+            pSvicLayer.Visible = true;
+ 
         }
 
     /// <summary>

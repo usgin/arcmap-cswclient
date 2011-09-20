@@ -38,14 +38,14 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tviewXml.Location = new System.Drawing.Point(13, 13);
             this.tviewXml.Name = "tviewXml";
-            this.tviewXml.Size = new System.Drawing.Size(469, 489);
+            this.tviewXml.Size = new System.Drawing.Size(701, 489);
             this.tviewXml.TabIndex = 0;
             // 
             // XmlVisualizerWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(494, 514);
+            this.ClientSize = new System.Drawing.Size(726, 514);
             this.Controls.Add(this.tviewXml);
             this.Name = "XmlVisualizerWin";
             this.Text = "Metadata Document";

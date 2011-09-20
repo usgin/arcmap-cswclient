@@ -38,6 +38,7 @@ namespace ArcMapAddin1
             lbNxtPage.Enabled = false;
 
             btnMetaDoc.Enabled = false;
+            btnAdd.Enabled = false;
         }
 
         /// <summary>
@@ -125,6 +126,7 @@ namespace ArcMapAddin1
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            btnAdd.Cursor = Cursors.WaitCursor;
             ///Add wms services
             ///
             
@@ -139,6 +141,8 @@ namespace ArcMapAddin1
             ///Add ArcGIS Rest services
             ///cSvcOpener.OpenAGS(strServiceLink);
             //////////////////////////////////////
+
+            btnAdd.Cursor = Cursors.Default;
         }
 
         private void lboxResults_SelectedIndexChanged(object sender, EventArgs e)

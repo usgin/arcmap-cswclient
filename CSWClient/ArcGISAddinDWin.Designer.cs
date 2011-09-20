@@ -157,7 +157,7 @@
             this.btnMetaDoc.Name = "btnMetaDoc";
             this.btnMetaDoc.Size = new System.Drawing.Size(75, 23);
             this.btnMetaDoc.TabIndex = 12;
-            this.btnMetaDoc.Text = "MetaData ";
+            this.btnMetaDoc.Text = "Metadata ";
             this.btnMetaDoc.UseVisualStyleBackColor = true;
             this.btnMetaDoc.Click += new System.EventHandler(this.btnMetaDoc_Click);
             // 
