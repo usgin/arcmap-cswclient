@@ -41,6 +41,7 @@
             this.btnMetaDoc = new System.Windows.Forms.Button();
             this.cboxWms = new System.Windows.Forms.CheckBox();
             this.cboxLivedata = new System.Windows.Forms.CheckBox();
+            this.cboCatalog = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // cboSearchName
@@ -52,7 +53,7 @@
             "Title",
             "Subject",
             "Abstract"});
-            this.cboSearchName.Location = new System.Drawing.Point(22, 22);
+            this.cboSearchName.Location = new System.Drawing.Point(23, 57);
             this.cboSearchName.Name = "cboSearchName";
             this.cboSearchName.Size = new System.Drawing.Size(76, 21);
             this.cboSearchName.TabIndex = 0;
@@ -61,9 +62,9 @@
             // 
             this.tboxSearchText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.tboxSearchText.Location = new System.Drawing.Point(115, 23);
+            this.tboxSearchText.Location = new System.Drawing.Point(116, 58);
             this.tboxSearchText.Name = "tboxSearchText";
-            this.tboxSearchText.Size = new System.Drawing.Size(104, 20);
+            this.tboxSearchText.Size = new System.Drawing.Size(106, 20);
             this.tboxSearchText.TabIndex = 1;
             // 
             // lboxResults
@@ -71,16 +72,16 @@
             this.lboxResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lboxResults.FormattingEnabled = true;
-            this.lboxResults.Location = new System.Drawing.Point(22, 118);
+            this.lboxResults.Location = new System.Drawing.Point(23, 147);
             this.lboxResults.Name = "lboxResults";
-            this.lboxResults.Size = new System.Drawing.Size(268, 199);
+            this.lboxResults.Size = new System.Drawing.Size(270, 199);
             this.lboxResults.TabIndex = 5;
             this.lboxResults.SelectedIndexChanged += new System.EventHandler(this.lboxResults_SelectedIndexChanged);
             // 
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(215, 474);
+            this.btnAdd.Location = new System.Drawing.Point(216, 506);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 6;
@@ -92,17 +93,17 @@
             // 
             this.tboxAbstract.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.tboxAbstract.Location = new System.Drawing.Point(23, 334);
+            this.tboxAbstract.Location = new System.Drawing.Point(22, 365);
             this.tboxAbstract.Multiline = true;
             this.tboxAbstract.Name = "tboxAbstract";
             this.tboxAbstract.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tboxAbstract.Size = new System.Drawing.Size(268, 123);
+            this.tboxAbstract.Size = new System.Drawing.Size(270, 123);
             this.tboxAbstract.TabIndex = 7;
             // 
             // btnSearch
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(236, 20);
+            this.btnSearch.Location = new System.Drawing.Point(237, 58);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(54, 23);
             this.btnSearch.TabIndex = 4;
@@ -113,7 +114,7 @@
             // lbNumRecords
             // 
             this.lbNumRecords.AutoSize = true;
-            this.lbNumRecords.Location = new System.Drawing.Point(22, 90);
+            this.lbNumRecords.Location = new System.Drawing.Point(20, 120);
             this.lbNumRecords.Name = "lbNumRecords";
             this.lbNumRecords.Size = new System.Drawing.Size(89, 13);
             this.lbNumRecords.TabIndex = 8;
@@ -123,7 +124,7 @@
             // 
             this.lbPrePage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbPrePage.AutoSize = true;
-            this.lbPrePage.Location = new System.Drawing.Point(187, 90);
+            this.lbPrePage.Location = new System.Drawing.Point(188, 120);
             this.lbPrePage.Name = "lbPrePage";
             this.lbPrePage.Size = new System.Drawing.Size(19, 13);
             this.lbPrePage.TabIndex = 9;
@@ -134,7 +135,7 @@
             // 
             this.lbNxtPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbNxtPage.AutoSize = true;
-            this.lbNxtPage.Location = new System.Drawing.Point(270, 90);
+            this.lbNxtPage.Location = new System.Drawing.Point(272, 120);
             this.lbNxtPage.Name = "lbNxtPage";
             this.lbNxtPage.Size = new System.Drawing.Size(19, 13);
             this.lbNxtPage.TabIndex = 10;
@@ -145,7 +146,7 @@
             // 
             this.lbPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbPage.AutoSize = true;
-            this.lbPage.Location = new System.Drawing.Point(212, 90);
+            this.lbPage.Location = new System.Drawing.Point(213, 120);
             this.lbPage.Name = "lbPage";
             this.lbPage.Size = new System.Drawing.Size(52, 13);
             this.lbPage.TabIndex = 11;
@@ -153,7 +154,7 @@
             // 
             // btnMetaDoc
             // 
-            this.btnMetaDoc.Location = new System.Drawing.Point(23, 474);
+            this.btnMetaDoc.Location = new System.Drawing.Point(22, 506);
             this.btnMetaDoc.Name = "btnMetaDoc";
             this.btnMetaDoc.Size = new System.Drawing.Size(75, 23);
             this.btnMetaDoc.TabIndex = 12;
@@ -166,28 +167,43 @@
             this.cboxWms.AutoSize = true;
             this.cboxWms.Checked = true;
             this.cboxWms.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxWms.Location = new System.Drawing.Point(23, 60);
+            this.cboxWms.Location = new System.Drawing.Point(23, 91);
             this.cboxWms.Name = "cboxWms";
             this.cboxWms.Size = new System.Drawing.Size(53, 17);
             this.cboxWms.TabIndex = 13;
             this.cboxWms.Text = "WMS";
             this.cboxWms.UseVisualStyleBackColor = true;
-            this.cboxWms.CheckedChanged += new System.EventHandler(this.cboxWms_CheckedChanged);
             // 
             // cboxLivedata
             // 
             this.cboxLivedata.AutoSize = true;
             this.cboxLivedata.Checked = true;
             this.cboxLivedata.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxLivedata.Location = new System.Drawing.Point(93, 60);
+            this.cboxLivedata.Location = new System.Drawing.Point(96, 91);
             this.cboxLivedata.Name = "cboxLivedata";
             this.cboxLivedata.Size = new System.Drawing.Size(70, 17);
             this.cboxLivedata.TabIndex = 14;
             this.cboxLivedata.Text = "Live data";
             this.cboxLivedata.UseVisualStyleBackColor = true;
             // 
+            // cboCatalog
+            // 
+            this.cboCatalog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboCatalog.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCatalog.FormattingEnabled = true;
+            this.cboCatalog.Items.AddRange(new object[] {
+            "USGIN AASG Geothermal Data Catalog",
+            "OneGeology Portal"});
+            this.cboCatalog.Location = new System.Drawing.Point(23, 22);
+            this.cboCatalog.Name = "cboCatalog";
+            this.cboCatalog.Size = new System.Drawing.Size(268, 21);
+            this.cboCatalog.TabIndex = 15;
+            this.cboCatalog.SelectedIndexChanged += new System.EventHandler(this.cboCatalog_SelectedIndexChanged);
+            // 
             // ArcGISAddinDWin
             // 
+            this.Controls.Add(this.cboCatalog);
             this.Controls.Add(this.cboxLivedata);
             this.Controls.Add(this.cboxWms);
             this.Controls.Add(this.btnMetaDoc);
@@ -202,7 +218,7 @@
             this.Controls.Add(this.tboxSearchText);
             this.Controls.Add(this.cboSearchName);
             this.Name = "ArcGISAddinDWin";
-            this.Size = new System.Drawing.Size(313, 515);
+            this.Size = new System.Drawing.Size(315, 553);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,6 +239,7 @@
         private System.Windows.Forms.Button btnMetaDoc;
         private System.Windows.Forms.CheckBox cboxWms;
         private System.Windows.Forms.CheckBox cboxLivedata;
+        private System.Windows.Forms.ComboBox cboCatalog;
 
 
     }

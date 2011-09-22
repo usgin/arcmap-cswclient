@@ -22,6 +22,7 @@ namespace ArcMapAddin1
         private string strResponseTxt;
         private ArrayList rDataList;
         private string strNumRecords;
+        private string strCatalogUrl;
 
         public string CswUrl 
         {
@@ -53,13 +54,17 @@ namespace ArcMapAddin1
             { return strNumRecords; }
         }
 
+        public string CatalogUrl
+        {
+            set
+            { strCatalogUrl = value; }
+        }
+
 
         public void CswRequest(PostDataCriteria pPostDaCri)
         {
             try
             {
-               
-                strCswUrl = "http://catalog.usgin.org/geoportal/csw/discovery?";
 
                 ///Get xml data for post request
                 ///
@@ -68,7 +73,7 @@ namespace ArcMapAddin1
                 strPostDa = pPostData.PostData;
                 
                 ///Send csw request         
-                Uri cswUri = new Uri(strCswUrl);
+                Uri cswUri = new Uri(strCatalogUrl);
                 HttpWebRequest cswRequest = (HttpWebRequest)WebRequest.Create(cswUri);
                 cswRequest.AllowAutoRedirect = true;
 

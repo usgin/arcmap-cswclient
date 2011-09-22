@@ -28,6 +28,9 @@ namespace ArcMapAddin1
             InitializeComponent();
             this.Hook = hook;
 
+            cboCatalog.SelectedIndex = 0;
+            cCswSearch.CatalogUrl = "http://catalog.usgin.org/geoportal/csw/discovery?";
+
             cboSearchName.SelectedIndex = 0;
             //cboMaxResults.SelectedIndex = 0;
             tboxAbstract.ReadOnly = true;
@@ -91,8 +94,11 @@ namespace ArcMapAddin1
             pPostDaCri.SearchText = tboxSearchText.Text; ///Set search key word
             pPostDaCri.QueryName = cboSearchName.SelectedItem.ToString(); ///Set search name
             pPostDaCri.StartPosition = pPageSwitchCri.StartPosition.ToString(); ///Set start position for search
-            pPostDaCri.IsWmsOnly = cboxWms.Checked; ///Define if the search is only for wms service           
-            pPostDaCri.IsLiveDataOnly = cboxLivedata.Checked; ///Define if the search is only for live data
+
+            ///Define if the search is only for wms service / live data
+            pPostDaCri.IsWmsOnly = IsWmsOnly(cboCatalog.SelectedIndex); ///Define if the search is only for wms service 
+            pPostDaCri.IsLiveDataOnly = IsLivedataOnly(cboCatalog.SelectedIndex); ///Define if the search is only for live data
+
             cCswSearch.CswRequest(pPostDaCri);
             //////////////////////////////////////////////////////////////
 
@@ -268,11 +274,67 @@ namespace ArcMapAddin1
             btnMetaDoc.Cursor = Cursors.Default;
         }
 
-        private void cboxWms_CheckedChanged(object sender, EventArgs e)
-        {
+/*********************************************************************************/
 
+        private void cboCatalog_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cboCatalog.SelectedIndex)
+            {
+                case 0:
+                    cCswSearch.CatalogUrl = "http://catalog.usgin.org/geoportal/csw/discovery?";
+                    cboxWms.Enabled = true;
+                    cboxLivedata.Enabled = true;
+                    break;
+                case 1:
+                    cCswSearch.CatalogUrl = "http://onegeology-catalog.brgm.fr/geonetwork/srv/csw?";
+                    cboxWms.Enabled = false;
+                    cboxLivedata.Enabled = false;
+                    break;
+            }
         }
 
+/*********************************************************************************/
+        /// <summary>
+        /// Identify if wms parameter is needed for service type in post data
+        /// </summary>
+        /// <param name="index">which catalog selected</param>
+        /// <returns>Need/not need wms parameter</returns>
+        private Boolean IsWmsOnly(int index)
+        {
+            Boolean isWms = true;
+            switch (index)
+            {
+                case 0:
+                    isWms = cboxWms.Checked;
+                    break;
+                case 1:
+                    isWms = false;
+                    break;
+            }
 
+            return isWms;
+        }
+
+        /// <summary>
+        /// Identify if livedata parameter is needed for type in post data
+        /// </summary>
+        /// <param name="index">which catalog selected</param>
+        /// <returns>Need/not need livedata parameter</returns>
+        private Boolean IsLivedataOnly(int index)
+        {
+            Boolean isLivedata = true;
+
+            switch (index)
+            {
+                case 0:
+                    isLivedata = cboxLivedata.Checked;
+                    break;
+                case 1:
+                    isLivedata = false;
+                    break;
+            }
+
+            return isLivedata;
+        }
     }
 }
