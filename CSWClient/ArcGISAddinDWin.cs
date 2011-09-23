@@ -162,7 +162,7 @@ namespace ArcMapAddin1
             tboxAbstract.Text = selectedItem.Abstract;
 
             ///Identify if the service can be added into the map
-            if (selectedItem.SvicType == null)
+            if (selectedItem.SvicType == null || selectedItem.SvrUrl == null)
             { btnAdd.Enabled = false; }
             else
             { btnAdd.Enabled = true; }
@@ -263,10 +263,19 @@ namespace ArcMapAddin1
         {
             btnMetaDoc.Cursor = Cursors.WaitCursor;
 
-            string urlMetaDoc = "http://catalog.usgin.org/geoportal/rest/document?id=" + selectedItem.MetadataId;
-
             XmlVisualizerWin pXmlVisualizer = new XmlVisualizerWin();
-            pXmlVisualizer.UrlMetaDoc = urlMetaDoc;
+            switch (cboCatalog.SelectedIndex)
+            {
+                case 0:
+                    string urlMetaUsginDoc = "http://catalog.usgin.org/geoportal/rest/document?id=" + selectedItem.MetadataId;
+                    pXmlVisualizer.UrlMetaDoc = urlMetaUsginDoc;
+                    break;
+                case 1:
+                    string urlMetaOnegeologyDoc = "http://onegeology-catalog.brgm.fr/geonetwork/srv/csw?request=GetRecordById&outputSchema=http://www.isotc211.org/2005/gmd&id=" + selectedItem.MetadataId;
+                    pXmlVisualizer.UrlMetaDoc = urlMetaOnegeologyDoc;
+                    break;
+            }
+           
             pXmlVisualizer.ListMetaDocXml();
             pXmlVisualizer.Text = selectedItem.Title;
             pXmlVisualizer.Show();

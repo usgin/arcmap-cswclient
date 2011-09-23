@@ -51,7 +51,6 @@
             this.cboSearchName.Items.AddRange(new object[] {
             "AnyText",
             "Title",
-            "Subject",
             "Abstract"});
             this.cboSearchName.Location = new System.Drawing.Point(23, 57);
             this.cboSearchName.Name = "cboSearchName";

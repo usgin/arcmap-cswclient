@@ -100,7 +100,7 @@ namespace ArcMapAddin1
                         if (ndRef.InnerText.Contains("GetCapabilities") || ndRef.InnerText.Contains("getcapabilities"))
                         {
                             urlCapabilities = ndRef.InnerText;
-                            if (urlCapabilities.Contains("=WMS")) 
+                            if (urlCapabilities.Contains("=WMS") || urlCapabilities.Contains("=wms")) 
                             { lstData.SvicType = "WMS"; } ///Identify the service type
 
                             string[] rUrlCapabilities = urlCapabilities.Split('?');
@@ -175,16 +175,17 @@ namespace ArcMapAddin1
                     for (int iRef = 0; iRef < ndRefList.Count; iRef++)
                     {
                         XmlNode ndRef = ndRefList[iRef];
-
-                        if (ndRef.Attributes[0].Value.Contains("OGC:WMS"))
+                        XmlAttributeCollection ndAttrColl = ndRef.Attributes;
+                        for (int iAtt = 0; iAtt < ndAttrColl.Count; iAtt++)
                         {
-                            lstData.SvicType = "WMS";
-
-                            if (ndRef.InnerText.Contains('?') && ndRef.InnerText.Contains("map="))
-                            { lstData.SvrUrl = ndRef.InnerText; }
-                            else
-                            { lstData.SvrUrl = ndRef.InnerText + '?'; }
-                            
+                            if (ndAttrColl[iAtt].Name == "protocol" && ndRef.Attributes[0].Value.Contains("OGC:WMS"))
+                            { 
+                                lstData.SvicType = "WMS"; 
+                                if(ndRef.InnerText.Contains('?'))
+                                { lstData.SvrUrl = ndRef.InnerText; }
+                                else if (!ndRef.InnerText.Contains('?'))
+                                { lstData.SvrUrl = ndRef.InnerText + '?'; }
+                            }
                         }
                     }
                 }
