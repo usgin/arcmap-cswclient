@@ -99,7 +99,7 @@ namespace ArcMapAddin1
             pPostDaCri.IsWmsOnly = IsWmsOnly(cboCatalog.SelectedIndex); ///Define if the search is only for wms service 
             pPostDaCri.IsLiveDataOnly = IsLivedataOnly(cboCatalog.SelectedIndex); ///Define if the search is only for live data
 
-            cCswSearch.CswRequest(pPostDaCri);
+            cCswSearch.CswRequest(pPostDaCri, cboCatalog.SelectedIndex); ///Send request and parse response
             //////////////////////////////////////////////////////////////
 
             ///Set value for number of records and page switcher/////////////////////////////
@@ -243,7 +243,7 @@ namespace ArcMapAddin1
         {
             pPostDaCri.StartPosition = startPosition.ToString(); ///Set start position for the post data of request          
 
-            cCswSearch.CswRequest(pPostDaCri);
+            cCswSearch.CswRequest(pPostDaCri, cboCatalog.SelectedIndex);
 
             lbPage.Text = "Page " + currentPage.ToString() + "/" + numPages.ToString();
 

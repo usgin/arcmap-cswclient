@@ -7,14 +7,3 @@ C:\Users\gchen\AppData\Local\Temporary Projects\ArcMapAddin1\obj\Debug\ResGen.wr
 C:\Users\gchen\AppData\Local\Temporary Projects\ArcMapAddin1\obj\Debug\ArcMapAddin1.dll
 C:\Users\gchen\AppData\Local\Temporary Projects\ArcMapAddin1\obj\Debug\ArcMapAddin1.pdb
 C:\Users\gchen\AppData\Local\Temporary Projects\ArcMapAddin1\bin\Debug\ArcMapAddin1.esriAddIn
-K:\TESTS\CSWClient\CSWClient\obj\Debug\ResolveAssemblyReference.cache
-K:\TESTS\CSWClient\CSWClient\obj\Debug\ArcMapAddin1.ArcGISAddinDWin.resources
-K:\TESTS\CSWClient\CSWClient\obj\Debug\ArcMapAddin1.Properties.Resources.resources
-K:\TESTS\CSWClient\CSWClient\obj\Debug\ArcMapAddin1.XmlVisualizerWin.resources
-K:\TESTS\CSWClient\CSWClient\obj\Debug\ResGen.read.1.tlog
-K:\TESTS\CSWClient\CSWClient\obj\Debug\ResGen.write.1.tlog
-K:\TESTS\CSWClient\CSWClient\bin\Debug\CSWClient.dll
-K:\TESTS\CSWClient\CSWClient\bin\Debug\CSWClient.pdb
-K:\TESTS\CSWClient\CSWClient\obj\Debug\CSWClient.dll
-K:\TESTS\CSWClient\CSWClient\obj\Debug\CSWClient.pdb
-K:\TESTS\CSWClient\CSWClient\bin\Debug\CSWClient.esriAddIn

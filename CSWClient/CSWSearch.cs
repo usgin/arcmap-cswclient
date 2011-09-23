@@ -60,8 +60,7 @@ namespace ArcMapAddin1
             { strCatalogUrl = value; }
         }
 
-
-        public void CswRequest(PostDataCriteria pPostDaCri)
+        public void CswRequest(PostDataCriteria pPostDaCri, int indexSelectedCatalog)
         {
             try
             {
@@ -98,7 +97,7 @@ namespace ArcMapAddin1
                 ///Parse csw response
                 ParseCswResponse cPCswRp = new ParseCswResponse();
                 cPCswRp.ResponseTxt = strResponseTxt;
-                cPCswRp.ParseResponse();
+                cPCswRp.ParseResponse(indexSelectedCatalog);
 
                 ///List all the services
                 rDataList = cPCswRp.DataList;
