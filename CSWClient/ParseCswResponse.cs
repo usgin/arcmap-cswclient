@@ -178,13 +178,19 @@ namespace ArcMapAddin1
                         XmlAttributeCollection ndAttrColl = ndRef.Attributes;
                         for (int iAtt = 0; iAtt < ndAttrColl.Count; iAtt++)
                         {
-                            if (ndAttrColl[iAtt].Name == "protocol" && ndRef.Attributes[0].Value.Contains("OGC:WMS"))
+                            if (ndAttrColl[iAtt].Name == "protocol" && ndRef.Attributes[0].Value.Contains("OGC:WMS")) ///Looking for wms service-
                             { 
                                 lstData.SvicType = "WMS"; 
-                                if(ndRef.InnerText.Contains('?'))
-                                { lstData.SvrUrl = ndRef.InnerText; }
-                                else if (!ndRef.InnerText.Contains('?'))
-                                { lstData.SvrUrl = ndRef.InnerText + '?'; }
+                                if(ndRef.InnerText.Contains('?')) ///When the service url has '&' in the end
+                                { 
+                                    lstData.SvrUrl = ndRef.InnerText;
+                                    break;
+                                } 
+                                else if (!ndRef.InnerText.Contains('?')) ///When the service url needs '?' in the end
+                                { 
+                                    lstData.SvrUrl = ndRef.InnerText + '?';
+                                    break;
+                                }
                             }
                         }
                     }
@@ -198,6 +204,9 @@ namespace ArcMapAddin1
             return lstData;
         }
 
+/// <summary>
+/// Reusable functions
+/// </summary>
         private void ParseSearchResults(XmlNodeList ndList, XmlNamespaceManager xnManager, int indexCatalog)
         {
             for (int i = 0; i < ndList.Count; i++)
