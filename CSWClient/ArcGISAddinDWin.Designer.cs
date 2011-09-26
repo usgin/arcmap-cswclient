@@ -42,6 +42,8 @@
             this.cboxWms = new System.Windows.Forms.CheckBox();
             this.cboxLivedata = new System.Windows.Forms.CheckBox();
             this.cboCatalog = new System.Windows.Forms.ComboBox();
+            this.cboxCurrentExtent = new System.Windows.Forms.CheckBox();
+            this.lbAbstract = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cboSearchName
@@ -71,7 +73,7 @@
             this.lboxResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lboxResults.FormattingEnabled = true;
-            this.lboxResults.Location = new System.Drawing.Point(23, 147);
+            this.lboxResults.Location = new System.Drawing.Point(21, 164);
             this.lboxResults.Name = "lboxResults";
             this.lboxResults.Size = new System.Drawing.Size(270, 199);
             this.lboxResults.TabIndex = 5;
@@ -80,7 +82,7 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(216, 506);
+            this.btnAdd.Location = new System.Drawing.Point(216, 538);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 6;
@@ -92,7 +94,7 @@
             // 
             this.tboxAbstract.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.tboxAbstract.Location = new System.Drawing.Point(22, 365);
+            this.tboxAbstract.Location = new System.Drawing.Point(23, 400);
             this.tboxAbstract.Multiline = true;
             this.tboxAbstract.Name = "tboxAbstract";
             this.tboxAbstract.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -113,7 +115,7 @@
             // lbNumRecords
             // 
             this.lbNumRecords.AutoSize = true;
-            this.lbNumRecords.Location = new System.Drawing.Point(20, 120);
+            this.lbNumRecords.Location = new System.Drawing.Point(20, 130);
             this.lbNumRecords.Name = "lbNumRecords";
             this.lbNumRecords.Size = new System.Drawing.Size(89, 13);
             this.lbNumRecords.TabIndex = 8;
@@ -123,7 +125,7 @@
             // 
             this.lbPrePage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbPrePage.AutoSize = true;
-            this.lbPrePage.Location = new System.Drawing.Point(188, 120);
+            this.lbPrePage.Location = new System.Drawing.Point(188, 130);
             this.lbPrePage.Name = "lbPrePage";
             this.lbPrePage.Size = new System.Drawing.Size(19, 13);
             this.lbPrePage.TabIndex = 9;
@@ -134,7 +136,7 @@
             // 
             this.lbNxtPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbNxtPage.AutoSize = true;
-            this.lbNxtPage.Location = new System.Drawing.Point(272, 120);
+            this.lbNxtPage.Location = new System.Drawing.Point(271, 130);
             this.lbNxtPage.Name = "lbNxtPage";
             this.lbNxtPage.Size = new System.Drawing.Size(19, 13);
             this.lbNxtPage.TabIndex = 10;
@@ -145,7 +147,7 @@
             // 
             this.lbPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbPage.AutoSize = true;
-            this.lbPage.Location = new System.Drawing.Point(213, 120);
+            this.lbPage.Location = new System.Drawing.Point(213, 130);
             this.lbPage.Name = "lbPage";
             this.lbPage.Size = new System.Drawing.Size(52, 13);
             this.lbPage.TabIndex = 11;
@@ -153,7 +155,7 @@
             // 
             // btnMetaDoc
             // 
-            this.btnMetaDoc.Location = new System.Drawing.Point(22, 506);
+            this.btnMetaDoc.Location = new System.Drawing.Point(23, 538);
             this.btnMetaDoc.Name = "btnMetaDoc";
             this.btnMetaDoc.Size = new System.Drawing.Size(75, 23);
             this.btnMetaDoc.TabIndex = 12;
@@ -178,7 +180,7 @@
             this.cboxLivedata.AutoSize = true;
             this.cboxLivedata.Checked = true;
             this.cboxLivedata.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxLivedata.Location = new System.Drawing.Point(96, 91);
+            this.cboxLivedata.Location = new System.Drawing.Point(82, 91);
             this.cboxLivedata.Name = "cboxLivedata";
             this.cboxLivedata.Size = new System.Drawing.Size(70, 17);
             this.cboxLivedata.TabIndex = 14;
@@ -200,8 +202,31 @@
             this.cboCatalog.TabIndex = 15;
             this.cboCatalog.SelectedIndexChanged += new System.EventHandler(this.cboCatalog_SelectedIndexChanged);
             // 
+            // cboxCurrentExtent
+            // 
+            this.cboxCurrentExtent.AutoSize = true;
+            this.cboxCurrentExtent.Location = new System.Drawing.Point(170, 91);
+            this.cboxCurrentExtent.Name = "cboxCurrentExtent";
+            this.cboxCurrentExtent.Size = new System.Drawing.Size(113, 17);
+            this.cboxCurrentExtent.TabIndex = 16;
+            this.cboxCurrentExtent.Text = "Use current extent";
+            this.cboxCurrentExtent.UseVisualStyleBackColor = true;
+            // 
+            // lbAbstract
+            // 
+            this.lbAbstract.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbAbstract.AutoSize = true;
+            this.lbAbstract.Location = new System.Drawing.Point(20, 375);
+            this.lbAbstract.Name = "lbAbstract";
+            this.lbAbstract.Size = new System.Drawing.Size(46, 13);
+            this.lbAbstract.TabIndex = 17;
+            this.lbAbstract.Text = "Abstract";
+            // 
             // ArcGISAddinDWin
             // 
+            this.Controls.Add(this.lbAbstract);
+            this.Controls.Add(this.cboxCurrentExtent);
             this.Controls.Add(this.cboCatalog);
             this.Controls.Add(this.cboxLivedata);
             this.Controls.Add(this.cboxWms);
@@ -217,7 +242,7 @@
             this.Controls.Add(this.tboxSearchText);
             this.Controls.Add(this.cboSearchName);
             this.Name = "ArcGISAddinDWin";
-            this.Size = new System.Drawing.Size(315, 553);
+            this.Size = new System.Drawing.Size(315, 576);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,6 +264,8 @@
         private System.Windows.Forms.CheckBox cboxWms;
         private System.Windows.Forms.CheckBox cboxLivedata;
         private System.Windows.Forms.ComboBox cboCatalog;
+        private System.Windows.Forms.CheckBox cboxCurrentExtent;
+        private System.Windows.Forms.Label lbAbstract;
 
 
     }

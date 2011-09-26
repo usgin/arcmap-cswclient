@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using System.Collections.Generic;
+using ESRI.ArcGIS.Geometry;
 
 namespace ArcMapAddin1
 {
@@ -98,6 +100,13 @@ namespace ArcMapAddin1
             ///Define if the search is only for wms service / live data
             pPostDaCri.IsWmsOnly = IsWmsOnly(cboCatalog.SelectedIndex); ///Define if the search is only for wms service 
             pPostDaCri.IsLiveDataOnly = IsLivedataOnly(cboCatalog.SelectedIndex); ///Define if the search is only for live data
+
+            ///Define if use the current extent
+            if (cboxCurrentExtent.Checked == true) {
+                if (GetCurrentExtent() != null) { pPostDaCri.Envelope = GetCurrentExtent(); }
+                else { pPostDaCri.Envelope = new Envelope(-118.3, 32.1, -87.1, 45.2); }
+            }
+            else { pPostDaCri.Envelope = new Envelope(-118.3, 32.1, -87.1, 45.2); }
 
             cCswSearch.CswRequest(pPostDaCri, cboCatalog.SelectedIndex); ///Send request and parse response
             //////////////////////////////////////////////////////////////
@@ -344,6 +353,48 @@ namespace ArcMapAddin1
             }
 
             return isLivedata;
+        }
+
+        private Envelope GetCurrentExtent()
+        {
+            Envelope currentExtent;
+
+            IEnvelope extent = ArcMap.Document.ActiveView.Extent;
+            if (extent == null) return null;
+
+            ISpatialReference CurrentMapSpatialReference = extent.SpatialReference;
+            if (CurrentMapSpatialReference == null)
+            {
+                //MessageBox.Show("Spatial Reference is Not Defined");
+                currentExtent = null;
+            }
+            if (CurrentMapSpatialReference is IUnknownCoordinateSystem)
+            {
+                // unknown cooridnate system
+                MessageBox.Show("Unknown Coordinate System\n\nDefault extent will be used for search");
+                currentExtent = null;
+            }
+            else if (CurrentMapSpatialReference is IGeographicCoordinateSystem)
+            {
+                // already in geographical coordinate system, reuse coordinate values
+                currentExtent = new Envelope(extent.XMin, extent.YMin, extent.XMax, extent.YMax);
+            }
+            else if (CurrentMapSpatialReference is IProjectedCoordinateSystem)
+            {
+                // project to geographical coordinate system
+                ISpatialReferenceFactory srFactory = new SpatialReferenceEnvironmentClass();
+                IGeographicCoordinateSystem gcs = srFactory.CreateGeographicCoordinateSystem((int)esriSRGeoCSType.esriSRGeoCS_WGS1984);
+                gcs.SetFalseOriginAndUnits(-180, -90, 1000000);
+                extent.Project(gcs);
+                currentExtent = new Envelope(extent.XMin, extent.YMin, extent.XMax, extent.YMax);
+            }
+            else
+            {
+                MessageBox.Show("Unsupported Coordinate System\n\nDefault extent will be used for search");
+                currentExtent = null;
+            }
+
+            return currentExtent;
         }
     }
 }

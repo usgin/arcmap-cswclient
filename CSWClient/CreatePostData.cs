@@ -105,10 +105,13 @@ namespace ArcMapAddin1
             pBuilder.Append("</ogc:PropertyName>");
             pBuilder.Append("<gml:Envelope>");
             pBuilder.Append("<gml:lowerCorner>");
-            pBuilder.Append("-118.3 32.1");
+
+            pBuilder.Append(pPostDataCriteria.Envelope.MinX.ToString() + " " + pPostDataCriteria.Envelope.MinY.ToString());    
+            //pBuilder.Append("-118.3 32.1");
             pBuilder.Append("</gml:lowerCorner>");
             pBuilder.Append("<gml:upperCorner>");
-            pBuilder.Append("-87.1 45.2");
+            pBuilder.Append(pPostDataCriteria.Envelope.MaxX.ToString() + " " + pPostDataCriteria.Envelope.MaxY.ToString());
+            //pBuilder.Append("-87.1 45.2");
             pBuilder.Append("</gml:upperCorner>");
             pBuilder.Append("</gml:Envelope>");
             pBuilder.Append("</ogc:BBOX>");            
