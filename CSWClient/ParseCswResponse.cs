@@ -97,11 +97,12 @@ namespace ArcMapAddin1
                     for (int iRef = 0; iRef < ndRefList.Count; iRef++)
                     {
                         XmlNode ndRef = ndRefList[iRef];
-                        if (ndRef.InnerText.Contains("GetCapabilities") || ndRef.InnerText.Contains("getcapabilities"))
+                        if (ndRef.InnerText.Contains("GetCapabilities") || ndRef.InnerText.Contains("getcapabilities") || ndRef.InnerText.Contains("getCapabilities"))
                         {
                             urlCapabilities = ndRef.InnerText;
-                            if (urlCapabilities.Contains("=WMS") || urlCapabilities.Contains("=wms")) 
+                            if (urlCapabilities.Contains("=WMS") || urlCapabilities.Contains("=wms"))
                             { lstData.SvicType = "WMS"; } ///Identify the service type
+                            else { break; }
 
                             string[] rUrlCapabilities = urlCapabilities.Split('?');
 
