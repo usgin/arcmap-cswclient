@@ -372,7 +372,7 @@ namespace ArcMapAddin1
             if (CurrentMapSpatialReference is IUnknownCoordinateSystem)
             {
                 // unknown cooridnate system
-                MessageBox.Show("Unknown Coordinate System\n\nDefault extent will be used for search");
+                MessageBox.Show("Unknown Coordinate System\n\nNo extent will be used for search");
                 currentExtent = null;
             }
             else if (CurrentMapSpatialReference is IGeographicCoordinateSystem)
@@ -391,7 +391,7 @@ namespace ArcMapAddin1
             }
             else
             {
-                MessageBox.Show("Unsupported Coordinate System\n\nDefault extent will be used for search");
+                MessageBox.Show("Unsupported Coordinate System\n\nNo extent will be used for search");
                 currentExtent = null;
             }
 
