@@ -87,6 +87,8 @@ namespace ArcMapAddin1
         private void btnSearch_Click(object sender, EventArgs e)
         {
             btnSearch.Cursor = Cursors.WaitCursor;
+            btnMetaDoc.Enabled = false;
+            btnAdd.Enabled = false;
 
             cCswSearch.CswUrl = tboxSearchText.Text;
 
@@ -103,10 +105,9 @@ namespace ArcMapAddin1
 
             ///Define if use the current extent
             if (cboxCurrentExtent.Checked == true) {
-                if (GetCurrentExtent() != null) { pPostDaCri.Envelope = GetCurrentExtent(); }
-                else { pPostDaCri.Envelope = new Envelope(-118.3, 32.1, -87.1, 45.2); }
+                pPostDaCri.Envelope = GetCurrentExtent(); 
             }
-            else { pPostDaCri.Envelope = new Envelope(-118.3, 32.1, -87.1, 45.2); }
+            else { pPostDaCri.Envelope = null;}
 
             cCswSearch.CswRequest(pPostDaCri, cboCatalog.SelectedIndex); ///Send request and parse response
             //////////////////////////////////////////////////////////////

@@ -36,6 +36,7 @@
             this.tviewXml.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.tviewXml.HotTracking = true;
             this.tviewXml.Location = new System.Drawing.Point(13, 13);
             this.tviewXml.Name = "tviewXml";
             this.tviewXml.Size = new System.Drawing.Size(701, 489);

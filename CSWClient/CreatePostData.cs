@@ -48,8 +48,11 @@ namespace ArcMapAddin1
 
                 if (pPostDaCri.IsLiveDataOnly) { SearchForLiveDataOnly(pBuilder); } ///Define if only search live data
                 if (pPostDaCri.IsWmsOnly) { SearchForWmsOnly(pBuilder); } ///Define if only search wms services
-                
-                BoundingBox(pBuilder); ///Set bounding box
+
+                if (pPostDaCri.Envelope != null)
+                {
+                    BoundingBox(pBuilder); ///Set bounding box
+                }
 
                 pBuilder.Append("</ogc:And>");
 
