@@ -62,8 +62,6 @@ namespace ArcMapAddin1
 
         public void CswRequest(PostDataCriteria pPostDaCri, int indexSelectedCatalog)
         {
-            try
-            {
 
                 ///Get xml data for post request
                 ///
@@ -87,35 +85,33 @@ namespace ArcMapAddin1
                 cswRqStream.Write(byteTemp, 0, byteTemp.Length);
                 cswRqStream.Close();
 
-                ///Get csw response
-                HttpWebResponse cswResponse = (HttpWebResponse)cswRequest.GetResponse();
-
-                if (cswResponse.StatusCode == HttpStatusCode.OK)
+                try
                 {
-                    Stream cswRpStream = cswResponse.GetResponseStream();
-                    StreamReader cswRpReader = new StreamReader(cswRpStream);
-                    strResponseTxt = cswRpReader.ReadToEnd();
-                    cswRpReader.Close();
+                    ///Get csw response
+                    HttpWebResponse cswResponse = (HttpWebResponse)cswRequest.GetResponse();
 
-                    ///Parse csw response
-                    ParseCswResponse cPCswRp = new ParseCswResponse();
-                    cPCswRp.ResponseTxt = strResponseTxt;
-                    cPCswRp.ParseResponse(indexSelectedCatalog);
+                    if (cswResponse.StatusCode == HttpStatusCode.OK)
+                    {
+                        Stream cswRpStream = cswResponse.GetResponseStream();
+                        StreamReader cswRpReader = new StreamReader(cswRpStream);
+                        strResponseTxt = cswRpReader.ReadToEnd();
+                        cswRpReader.Close();
 
-                    ///List all the services
-                    rDataList = cPCswRp.DataList;
+                        ///Parse csw response
+                        ParseCswResponse cPCswRp = new ParseCswResponse();
+                        cPCswRp.ResponseTxt = strResponseTxt;
+                        cPCswRp.ParseResponse(indexSelectedCatalog);
 
-                    ///Other values needed in dockable window
-                    strNumRecords = cPCswRp.NumRecords;
+                        ///List all the services
+                        rDataList = cPCswRp.DataList;
+
+                        ///Other values needed in dockable window
+                        strNumRecords = cPCswRp.NumRecords;
+                    }
+                    else { MessageBox.Show("Cannot Get Records!"); }
                 }
-                else { MessageBox.Show("Cannot Get Records!"); }
-
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+                catch (Exception ex)
+                { throw ex; }
 
         }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Collections;
+using System.Diagnostics;
 
 namespace ArcMapAddin1
 {
@@ -100,6 +101,7 @@ namespace ArcMapAddin1
                         if (ndRef.InnerText.Contains("GetCapabilities") || ndRef.InnerText.Contains("getcapabilities") || ndRef.InnerText.Contains("getCapabilities"))
                         {
                             urlCapabilities = ndRef.InnerText;
+
                             if (urlCapabilities.Contains("=WMS") || urlCapabilities.Contains("=wms"))
                             { lstData.SvicType = "WMS"; } ///Identify the service type
                             else { break; }
@@ -113,6 +115,9 @@ namespace ArcMapAddin1
                                 string[] urlProperties = rUrlCapabilities[1].Split('&');
                                 lstData.SvrUrl += urlProperties[0] + '&';
                             }
+
+                            GetCapabilitiesTest pTest = new GetCapabilitiesTest();
+                            Debug.WriteLine(pTest.IsWms(lstData.SvrUrl).ToString());
 
                             break;
                         }

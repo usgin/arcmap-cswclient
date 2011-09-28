@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Net;
+using System.IO;
+using System.Windows.Forms;
+using System.Diagnostics;
+
+namespace ArcMapAddin1
+{
+    class GetCapabilitiesTest
+    {
+        public Boolean IsWms(string urlWmsService)
+        {
+            string urlWmsGetCapabilities = urlWmsService + "service=WMS&request=GetCapabilities";
+
+            return this.IsOk(urlWmsGetCapabilities);
+        }
+
+        private Boolean IsOk(string urlGetCapabilities)
+        {
+            ///Send GetCapabilities request         
+            Uri uriGetCapabilities = new Uri(urlGetCapabilities);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uriGetCapabilities);
+
+            request.Method = "GET";
+            request.ContentType = "text/xml;charset=UTF-8";
+            request.Timeout = 5000;
+
+
+            try
+            {
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+
+                Debug.WriteLine(urlGetCapabilities);
+                response.Close();
+                return true;
+            }
+            catch (WebException wex)
+            {
+                Debug.WriteLine(urlGetCapabilities);
+                Debug.WriteLine(wex.Status.ToString());
+                if (wex.Response != null) {
+                    Debug.WriteLine(((HttpWebResponse)wex.Response).StatusDescription);
+                    wex.Response.Close(); 
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(urlGetCapabilities);
+                Debug.WriteLine(ex.Message);
+                return false;
+            }
+            
+
+
+            
+        }
+    }
+}

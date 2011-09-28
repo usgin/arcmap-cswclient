@@ -117,6 +117,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ServiceOpener.cs" />
+    <Compile Include="GetCapabilitiesTest.cs" />
     <Compile Include="XmlVisualizerWin.cs">
       <SubType>Form</SubType>
     </Compile>

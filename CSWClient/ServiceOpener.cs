@@ -138,7 +138,7 @@ namespace ArcMapAddin1
                 ///Get the specific service with the service name
                 while (pAGSSOName != null)
                 {
-                    Debug.WriteLine(pAGSSOName.Name + ":" + pAGSSOName.Type);
+                    //Debug.WriteLine(pAGSSOName.Name + ":" + pAGSSOName.Type);
 
                     if (pAGSSOName.Name == strSvrName && pAGSSOName.Type == "MapServer")
                     {
