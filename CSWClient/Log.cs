@@ -29,6 +29,7 @@ namespace ArcMapAddin1
 
         public void CloseLog()
         {
+            wLog.WriteLine(" ");
             wLog.Close();
         }
     }

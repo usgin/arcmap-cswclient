@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
-using System.Collections.Generic;
 using ESRI.ArcGIS.Geometry;
 
 namespace ArcMapAddin1
@@ -20,7 +19,6 @@ namespace ArcMapAddin1
         private ServiceOpener cSvcOpener = new ServiceOpener();
         private CSWSearch cCswSearch = new CSWSearch();
         private ArrayList rList = new ArrayList();
-        private AddLayer pAddLayer = new AddLayer();
         private ListDataModel selectedItem = null;
         private PostDataCriteria pPostDaCri = new PostDataCriteria();
         private PageSwitchCriteria pPageSwitchCri = new PageSwitchCriteria();

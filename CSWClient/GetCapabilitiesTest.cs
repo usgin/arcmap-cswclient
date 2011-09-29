@@ -43,7 +43,7 @@ namespace ArcMapAddin1
             }
             catch (WebException wex)
             {
-                Log cLog = new Log("WebException");
+                Log cLog = new Log("WebExceptionLog");
                 cLog.WriteLog(urlGetCapabilities);
                 cLog.WriteLog(wex.Status.ToString());
                 cLog.CloseLog();
