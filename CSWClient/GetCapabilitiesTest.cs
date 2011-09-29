@@ -7,6 +7,10 @@ using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
 
+///This is a sample to use this class
+///GetCapabilitiesTest pTest = new GetCapabilitiesTest();
+///If(pTest.IsWms(<ServiceUrl>)){...};
+
 namespace ArcMapAddin1
 {
     class GetCapabilitiesTest
@@ -26,7 +30,7 @@ namespace ArcMapAddin1
 
             request.Method = "GET";
             request.ContentType = "text/xml;charset=UTF-8";
-            request.Timeout = 5000;
+            request.Timeout = 30000;
 
 
             try
@@ -42,7 +46,8 @@ namespace ArcMapAddin1
                 Debug.WriteLine(urlGetCapabilities);
                 Debug.WriteLine(wex.Status.ToString());
                 if (wex.Response != null) {
-                    Debug.WriteLine(((HttpWebResponse)wex.Response).StatusDescription);
+                    HttpWebResponse rps = (HttpWebResponse)wex.Response;
+                    Debug.WriteLine(rps.StatusDescription);
                     wex.Response.Close(); 
                 }
                 return false;

@@ -146,7 +146,7 @@ namespace ArcMapAddin1
             ///Add wms services
             ///
             
-            if (selectedItem.SvicType == "WMS")
+            if (selectedItem.SvicType == "WMS_Valid")
             {
                 string strServiceLink = selectedItem.SvrUrl;
 
@@ -174,7 +174,20 @@ namespace ArcMapAddin1
             ///Identify if the service can be added into the map
             if (selectedItem.SvicType == null || selectedItem.SvrUrl == null)
             { btnAdd.Enabled = false; }
-            else
+            else if (selectedItem.SvicType == "WMS")
+            {
+                if (TestUrl(selectedItem.SvrUrl))
+                {
+                    btnAdd.Enabled = true;
+                    selectedItem.SvicType += "_Valid";
+                }
+                else
+                { 
+                    btnAdd.Enabled = false;
+                    selectedItem.SvicType = null;
+                }         
+            }
+            else if (selectedItem.SvicType == "WMS_Valid")
             { btnAdd.Enabled = true; }
 
             ///Identify if the metadata document exists
@@ -184,6 +197,12 @@ namespace ArcMapAddin1
             { btnMetaDoc.Enabled = true; }
 
             lboxResults.Cursor = Cursors.Default;
+        }
+
+        private Boolean TestUrl(string url)
+        {
+            GetCapabilitiesTest cTest = new GetCapabilitiesTest();
+            return cTest.IsWms(url);
         }
 
 

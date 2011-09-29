@@ -52,5 +52,6 @@ namespace ArcMapAddin1
             get
             { return strSvicType; }
         }
+
     }
 }

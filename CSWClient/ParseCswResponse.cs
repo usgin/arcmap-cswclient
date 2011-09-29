@@ -116,9 +116,6 @@ namespace ArcMapAddin1
                                 lstData.SvrUrl += urlProperties[0] + '&';
                             }
 
-                            GetCapabilitiesTest pTest = new GetCapabilitiesTest();
-                            Debug.WriteLine(pTest.IsWms(lstData.SvrUrl).ToString());
-
                             break;
                         }
                     }
