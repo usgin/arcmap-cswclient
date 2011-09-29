@@ -105,6 +105,7 @@
     </Compile>
     <Compile Include="Envelope.cs" />
     <Compile Include="ListDataModel.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="MetadataDoc.cs" />
     <Compile Include="PageSwitchCriteria.cs" />
     <Compile Include="ParseCswResponse.cs" />
@@ -176,6 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <AddInContent Include="Images\ArcGISAddinDWin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <PropertyGroup>
     <ZipFileExtension>esriAddIn</ZipFileExtension>

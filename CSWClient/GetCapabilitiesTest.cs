@@ -43,6 +43,11 @@ namespace ArcMapAddin1
             }
             catch (WebException wex)
             {
+                Log cLog = new Log("WebException");
+                cLog.WriteLog(urlGetCapabilities);
+                cLog.WriteLog(wex.Status.ToString());
+                cLog.CloseLog();
+
                 Debug.WriteLine(urlGetCapabilities);
                 Debug.WriteLine(wex.Status.ToString());
                 if (wex.Response != null) {
@@ -58,10 +63,7 @@ namespace ArcMapAddin1
                 Debug.WriteLine(ex.Message);
                 return false;
             }
-            
-
-
-            
+                       
         }
     }
 }
