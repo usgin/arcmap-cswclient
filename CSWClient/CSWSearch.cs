@@ -90,26 +90,24 @@ namespace ArcMapAddin1
                     ///Get csw response
                     HttpWebResponse cswResponse = (HttpWebResponse)cswRequest.GetResponse();
 
-                    if (cswResponse.StatusCode == HttpStatusCode.OK)
-                    {
-                        Stream cswRpStream = cswResponse.GetResponseStream();
-                        StreamReader cswRpReader = new StreamReader(cswRpStream);
-                        strResponseTxt = cswRpReader.ReadToEnd();
-                        cswRpReader.Close();
+                    Stream cswRpStream = cswResponse.GetResponseStream();
+                    StreamReader cswRpReader = new StreamReader(cswRpStream);
+                    strResponseTxt = cswRpReader.ReadToEnd();
+                    cswRpReader.Close();
 
-                        ///Parse csw response
-                        ParseCswResponse cPCswRp = new ParseCswResponse();
-                        cPCswRp.ResponseTxt = strResponseTxt;
-                        cPCswRp.ParseResponse(indexSelectedCatalog);
+                    ///Parse csw response
+                    ParseCswResponse cPCswRp = new ParseCswResponse();
+                    cPCswRp.ResponseTxt = strResponseTxt;
+                    cPCswRp.ParseResponse(indexSelectedCatalog);
 
-                        ///List all the services
-                        rDataList = cPCswRp.DataList;
+                    ///List all the services
+                    rDataList = cPCswRp.DataList;
 
-                        ///Other values needed in dockable window
-                        strNumRecords = cPCswRp.NumRecords;
-                    }
-                    else { MessageBox.Show("Cannot Get Records!"); }
+                    ///Other values needed in dockable window
+                    strNumRecords = cPCswRp.NumRecords;
                 }
+                catch (WebException wex)
+                { throw wex; }
                 catch (Exception ex)
                 { throw ex; }
 

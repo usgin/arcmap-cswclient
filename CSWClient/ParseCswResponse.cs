@@ -118,6 +118,14 @@ namespace ArcMapAddin1
 
                             break;
                         }
+                        else if (ndRef.InnerText.Contains("Capabilities") || ndRef.InnerText.Contains("capabilities"))
+                        {
+                            ///Write log for invalid GetCapabilities url
+                            Log cLog = new Log("InvalidGetCapabilitiesUrl");
+                            cLog.WriteLog(ndTitle.InnerText);
+                            cLog.WriteLog(ndRef.InnerText);
+                            cLog.CloseLog();
+                        }
                     }
                 }
 

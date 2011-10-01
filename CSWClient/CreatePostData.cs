@@ -81,7 +81,7 @@ namespace ArcMapAddin1
 
         private void SearchText(StringBuilder pBuilder)
         {
-            pBuilder.Append("<ogc:PropertyIsLike wildCard='*' escape='\' singleChar='?'>");
+            pBuilder.Append("<ogc:PropertyIsLike wildCard='*' escapeChar='\' singleChar='?'>");
             pBuilder.Append("<ogc:PropertyName>");
 
             pBuilder.Append(pPostDataCriteria.QueryName);

@@ -225,6 +225,7 @@
             // 
             // ArcGISAddinDWin
             // 
+            this.AutoScroll = true;
             this.Controls.Add(this.lbAbstract);
             this.Controls.Add(this.cboxCurrentExtent);
             this.Controls.Add(this.cboCatalog);

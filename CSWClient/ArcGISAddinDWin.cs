@@ -93,6 +93,7 @@ namespace ArcMapAddin1
             pPageSwitchCri.StartPosition = 1; ///Set the start position for page switcher
 
             ///Send search request////////////////////////////////////////
+            if (tboxSearchText.Text == "") { tboxSearchText.Text = "*"; }
             pPostDaCri.SearchText = tboxSearchText.Text; ///Set search key word
             pPostDaCri.QueryName = cboSearchName.SelectedItem.ToString(); ///Set search name
             pPostDaCri.StartPosition = pPageSwitchCri.StartPosition.ToString(); ///Set start position for search
@@ -116,6 +117,7 @@ namespace ArcMapAddin1
             int numRecords = Convert.ToInt32(cCswSearch.NumRecords);
 
             pPageSwitchCri.NumPages = numRecords / 15; ///Set the total number of pages for page switcher
+            if (numRecords % 15 != 0) { pPageSwitchCri.NumPages++; }
 
             if (pPageSwitchCri.NumPages > 0) { lbNxtPage.Enabled = true; } ///Enable the next page function
             
