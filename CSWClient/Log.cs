@@ -10,7 +10,7 @@ namespace ArcMapAddin1
     class Log
     {
         private StreamWriter wLog;
-        private string _logPath = "\\\\SERVER3\\DevelopmentDocs\\ArcGISAddIns\\Exceptions4CswClient\\";
+        private string _logPath = "\\\\COESITE\\DropBox\\gchen\\Exceptions4CswClient\\";
         private Boolean isWrite;
 
         public Log(string logName)
