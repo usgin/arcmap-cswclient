@@ -291,7 +291,7 @@ namespace ArcMapAddin1
         private void btnMetaDoc_Click(object sender, EventArgs e)
         {
             btnMetaDoc.Cursor = Cursors.WaitCursor;
-
+/*
             XmlVisualizerWin pXmlVisualizer = new XmlVisualizerWin();
             switch (cboCatalog.SelectedIndex)
             {
@@ -312,6 +312,28 @@ namespace ArcMapAddin1
             pXmlVisualizer.ListMetaDocXml();
             pXmlVisualizer.Text = selectedItem.Title;
             pXmlVisualizer.Show();
+*/
+            FormViewMetadata pFrmViewMetadata = new FormViewMetadata();
+            pFrmViewMetadata.Text = lboxResults.SelectedItem.ToString();
+            switch (cboCatalog.SelectedIndex)
+            {
+                case 0:
+                    pFrmViewMetadata.OpenMetadataDoc("http://catalog.usgin.org/geoportal/rest/document?id=" + selectedItem.MetadataId);
+                    pFrmViewMetadata.Show();
+                    pFrmViewMetadata.Activate();
+                    break;
+                case 1:
+                    pFrmViewMetadata.OpenMetadataDoc("http://onegeology-catalog.brgm.fr/geonetwork/srv/csw?request=GetRecordById&outputSchema=http://www.isotc211.org/2005/gmd&id=" + selectedItem.MetadataId);
+                    pFrmViewMetadata.Show();
+                    pFrmViewMetadata.Activate();
+                    break;
+                case 2:
+                    pFrmViewMetadata.OpenMetadataDoc("http://geo.data.gov/geoportal/rest/document?id=" + selectedItem.MetadataId);
+                    pFrmViewMetadata.Show();
+                    pFrmViewMetadata.Activate();
+                    break;
+            }
+
 
             btnMetaDoc.Cursor = Cursors.Default;
         }
