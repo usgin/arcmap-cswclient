@@ -37,10 +37,13 @@ namespace ArcMapAddin1
             switch (indexCatalog)
             {
                 case 0:
-                    ParseUsginCatalog(0);
+                    ParseGeoportalCatalog(0);
                     break;
                 case 1:
                     ParseOnegeologyCatalog(1);
+                    break;
+                case 2:
+                    ParseGeoportalCatalog(2);
                     break;
             }
           
@@ -49,7 +52,7 @@ namespace ArcMapAddin1
 /// <summary>
 /// Parse the response from USGIM Catalog
 /// </summary>
-        private void ParseUsginCatalog(int indexCatalog)
+        private void ParseGeoportalCatalog(int indexCatalog)
         {
             XmlDocument xDoc = new XmlDocument();
             xDoc.LoadXml(strResponseTxt);
@@ -71,7 +74,7 @@ namespace ArcMapAddin1
             ParseSearchResults(ndMDaList, xnManager, indexCatalog);
         }
 
-        private ListDataModel ParseEachUsginSearchResult(XmlNode nd, XmlNamespaceManager xnManager)
+        private ListDataModel ParseEachGeoportalSearchResult(XmlNode nd, XmlNamespaceManager xnManager)
         {
             ListDataModel lstData = new ListDataModel();
 
@@ -81,8 +84,17 @@ namespace ArcMapAddin1
 
             ///Get metadata id info
             XmlNodeList ndIdentifierList = nd.SelectNodes("dc:identifier", xnManager);
-            XmlNode ndMetaDaId = ndIdentifierList[1] ;
-            lstData.MetadataId = ndMetaDaId.InnerText; 
+            for (int i = 0; i < ndIdentifierList.Count; i++)
+            {
+                XmlNode ndMetaDaId = ndIdentifierList[i];
+                for(int j = 0; j < ndMetaDaId.Attributes.Count; j ++)
+                {
+                    if (ndMetaDaId.Attributes[j].Name == "scheme" && ndMetaDaId.Attributes[j].Value.Contains("DocID"))
+                    { lstData.MetadataId = ndMetaDaId.InnerText; break; }
+                }
+            }
+            
+            
 
             ///Get abstract info
             XmlNode ndAbstract = nd.SelectSingleNode("dct:abstract", xnManager);
@@ -227,12 +239,16 @@ namespace ArcMapAddin1
                 switch (indexCatalog)
                 {
                     case 0:
-                        ListDataModel usginModel = ParseEachUsginSearchResult(ndMDa, xnManager);
+                        ListDataModel usginModel = ParseEachGeoportalSearchResult(ndMDa, xnManager);
                         Add2DaList(usginModel);
                         break;
                     case 1:
                         ListDataModel onegeologyModel = ParseEachOnegeologySearchResult(ndMDa, xnManager);
                         Add2DaList(onegeologyModel);
+                        break;
+                    case 2:
+                        ListDataModel geogovModel = ParseEachGeoportalSearchResult(ndMDa, xnManager);
+                        Add2DaList(geogovModel);
                         break;
                 }          
             }

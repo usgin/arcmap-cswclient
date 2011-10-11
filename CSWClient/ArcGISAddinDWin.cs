@@ -303,6 +303,10 @@ namespace ArcMapAddin1
                     string urlMetaOnegeologyDoc = "http://onegeology-catalog.brgm.fr/geonetwork/srv/csw?request=GetRecordById&outputSchema=http://www.isotc211.org/2005/gmd&id=" + selectedItem.MetadataId;
                     pXmlVisualizer.UrlMetaDoc = urlMetaOnegeologyDoc;
                     break;
+                case 2:
+                    string urlMetaGeogovDoc = "http://geo.data.gov/geoportal/rest/document?id=" + selectedItem.MetadataId;
+                    pXmlVisualizer.UrlMetaDoc = urlMetaGeogovDoc;
+                    break;
             }
            
             pXmlVisualizer.ListMetaDocXml();
@@ -328,6 +332,11 @@ namespace ArcMapAddin1
                     cboxWms.Enabled = false;
                     cboxLivedata.Enabled = false;
                     break;
+                case 2:
+                    cCswSearch.CatalogUrl = "http://geo.data.gov/geoportal/csw/discovery?";
+                    cboxWms.Enabled = false;
+                    cboxLivedata.Enabled = true;
+                    break;
             }
         }
 
@@ -339,18 +348,17 @@ namespace ArcMapAddin1
         /// <returns>Need/not need wms parameter</returns>
         private Boolean IsWmsOnly(int index)
         {
-            Boolean isWms = true;
             switch (index)
             {
                 case 0:
-                    isWms = cboxWms.Checked;
-                    break;
+                    return cboxWms.Checked;
                 case 1:
-                    isWms = false;
-                    break;
+                    return false;
+                case 2:
+                    return false;
+                default:
+                    return true;
             }
-
-            return isWms;
         }
 
         /// <summary>
