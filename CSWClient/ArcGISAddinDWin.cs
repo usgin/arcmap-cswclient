@@ -320,6 +320,11 @@ namespace ArcMapAddin1
 
         private void cboCatalog_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lboxResults.Items.Clear();
+            tboxAbstract.Clear();
+            btnAdd.Enabled = false;
+            btnMetaDoc.Enabled = false;
+
             switch (cboCatalog.SelectedIndex)
             {
                 case 0:
