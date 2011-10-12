@@ -37,14 +37,14 @@
             this.webBrowserMetadata.Location = new System.Drawing.Point(0, 0);
             this.webBrowserMetadata.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowserMetadata.Name = "webBrowserMetadata";
-            this.webBrowserMetadata.Size = new System.Drawing.Size(609, 503);
+            this.webBrowserMetadata.Size = new System.Drawing.Size(693, 503);
             this.webBrowserMetadata.TabIndex = 0;
             // 
             // FormViewMetadata
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(609, 503);
+            this.ClientSize = new System.Drawing.Size(693, 503);
             this.Controls.Add(this.webBrowserMetadata);
             this.Name = "FormViewMetadata";
             this.Text = "View Metadata";

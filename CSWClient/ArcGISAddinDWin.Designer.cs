@@ -73,6 +73,7 @@
             this.lboxResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lboxResults.FormattingEnabled = true;
+            this.lboxResults.HorizontalScrollbar = true;
             this.lboxResults.Location = new System.Drawing.Point(21, 164);
             this.lboxResults.Name = "lboxResults";
             this.lboxResults.Size = new System.Drawing.Size(270, 199);
