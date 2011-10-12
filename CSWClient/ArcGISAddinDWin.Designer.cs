@@ -67,6 +67,7 @@
             this.tboxSearchText.Name = "tboxSearchText";
             this.tboxSearchText.Size = new System.Drawing.Size(106, 20);
             this.tboxSearchText.TabIndex = 1;
+            this.tboxSearchText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tboxSearchText_KeyPress);
             // 
             // lboxResults
             // 

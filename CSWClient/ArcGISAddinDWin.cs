@@ -84,7 +84,7 @@ namespace ArcMapAddin1
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            btnSearch.Cursor = Cursors.WaitCursor;
+            this.Cursor = Cursors.WaitCursor;
             btnMetaDoc.Enabled = false;
             btnAdd.Enabled = false;
 
@@ -137,7 +137,7 @@ namespace ArcMapAddin1
             }
 
             ////////////////////////////////////////////////////////////
-            btnSearch.Cursor = Cursors.Default;
+            this.Cursor = Cursors.Default;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -450,6 +450,11 @@ namespace ArcMapAddin1
             }
 
             return currentExtent;
+        }
+
+        private void tboxSearchText_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r') { btnSearch_Click(sender, e); }
         }
     }
 }
