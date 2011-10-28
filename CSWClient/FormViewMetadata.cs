@@ -36,7 +36,14 @@ namespace ArcMapAddin1
         {
             string tmpOutput = GenerateTempFilename("Meta", "html");
             XslTransform pXslTransform = new XslTransform();
-            pXslTransform.Load("ISO19139ToHTML.xsl");
+            try
+            {
+                pXslTransform.Load("http://catalog.usgin.org/XSLT/ISO19139ToHTML.xsl");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             pXslTransform.Transform(input, tmpOutput);
 
             return tmpOutput;
