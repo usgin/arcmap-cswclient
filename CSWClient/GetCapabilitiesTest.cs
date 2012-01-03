@@ -6,6 +6,8 @@ using System.Net;
 using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Xml;
+using System.Collections;
 
 ///This is a sample to use this class
 ///GetCapabilitiesTest pTest = new GetCapabilitiesTest();
@@ -22,6 +24,38 @@ namespace ArcMapAddin1
             return this.IsOk(urlWmsGetCapabilities);
         }
 
+        private Boolean IsOk(string urlGetCapabilities)
+        {
+            string urlStatusChecker = "http://registry.fgdc.gov/statuschecker/services/rest/index.php?url="
+                + urlGetCapabilities + "&type=wms&formattype=xml&requesttype=brief";
+
+            Uri uriStatusChecker = new Uri(urlStatusChecker);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uriStatusChecker);
+
+            request.Method = "GET";
+            request.ContentType = "text/xml;charset=UTF-8";
+            request.Timeout = 30000;
+
+            try
+            {
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                Stream rpStream = response.GetResponseStream();
+
+                StreamReader rpReader = new StreamReader(rpStream);
+                string strResponse = rpReader.ReadToEnd();
+                rpReader.Close();
+
+                return parseResponse(strResponse);
+            }
+            catch (WebException wex)
+            {
+                return false;
+                throw wex;             
+            }
+        }
+
+        /*
         private Boolean IsOk(string urlGetCapabilities)
         {
             ///Send GetCapabilities request         
@@ -65,6 +99,22 @@ namespace ArcMapAddin1
                 return false;
             }
                        
+        }
+        */    
+    
+        private Boolean parseResponse(string strResponse)
+        {
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.LoadXml(strResponse);
+            XmlNamespaceManager xnManager = new XmlNamespaceManager(xDoc.NameTable);
+
+            xnManager.AddNamespace("fgdc", "http://registry.gsdi.org/statuschecker/services/rest/");
+            xnManager.AddNamespace("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+            xnManager.AddNamespace("xsi:schemaLocation", "http://registry.gsdi.org/statuschecker/services/rest/responseSchema.xsd");
+
+            XmlNode ndPerformanceScore = xDoc.SelectSingleNode("//fgdc:response/fgdc:service/fgdc:summary/fgdc:scoredTest/fgdc:performance[2]", xnManager);
+            if (Convert.ToDouble(ndPerformanceScore.InnerText) > 0) { return true; }
+            else { return false; }
         }
     }
 }

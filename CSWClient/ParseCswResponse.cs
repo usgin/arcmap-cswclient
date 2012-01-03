@@ -50,7 +50,7 @@ namespace ArcMapAddin1
         }
 
 /// <summary>
-/// Parse the response from USGIM Catalog
+/// Parse the response from USGIN Catalog
 /// </summary>
         private void ParseGeoportalCatalog(int indexCatalog)
         {
