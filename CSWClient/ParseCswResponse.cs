@@ -45,12 +45,15 @@ namespace ArcMapAddin1
                 case 2:
                     ParseGeoportalCatalog(2);
                     break;
+                case 3:
+                    ParseGeoportalCatalog(3);
+                    break;
             }
           
         }
 
 /// <summary>
-/// Parse the response from USGIN Catalog
+/// Parse the response from Geoportal Catalog
 /// </summary>
         private void ParseGeoportalCatalog(int indexCatalog)
         {
@@ -149,6 +152,65 @@ namespace ArcMapAddin1
             return lstData;
         }
 
+        /// <summary>
+        /// Parse the response from Geoportal catalog, with multi distributions in the response
+        /// </summary>
+        private ListDataModel ParseEachMultiDistGeoportalSearchResult(XmlNode nd, XmlNamespaceManager xnManager)
+        {
+            ListDataModel lstData = new ListDataModel();
+
+            ///Get record title info
+            XmlNode ndTitle = nd.SelectSingleNode("dc:title", xnManager);
+            lstData.Title = ndTitle.InnerText;
+
+            ///Get metadata id info
+            XmlNodeList ndIdentifierList = nd.SelectNodes("dc:identifier", xnManager);
+            for (int i = 0; i < ndIdentifierList.Count; i++)
+            {
+                XmlNode ndMetaDaId = ndIdentifierList[i];
+                for (int j = 0; j < ndMetaDaId.Attributes.Count; j++)
+                {
+                    if (ndMetaDaId.Attributes[j].Name == "scheme" && ndMetaDaId.Attributes[j].Value.Contains("DocID"))
+                    { lstData.MetadataId = ndMetaDaId.InnerText; break; }
+                }
+            }
+
+            ///Get abstract info
+            XmlNode ndAbstract = nd.SelectSingleNode("dct:abstract", xnManager);
+            lstData.Abstract = ndAbstract.InnerText;
+
+            ///Get the link of service and service type
+            XmlNodeList ndRefList = nd.SelectNodes("dct:references", xnManager);
+            string urlCapabilities;
+            try
+            {
+                if (ndRefList != null)
+                {
+                    for (int iRef = 0; iRef < ndRefList.Count; iRef++)
+                    {
+                        XmlNode ndRef = ndRefList[iRef];
+                        for (int iAttr = 0; iAttr < ndRef.Attributes.Count; iAttr++)
+                        {
+                            if (ndRef.Attributes[iAttr].Name == "scheme" && ndRef.Attributes[iAttr].Value.Contains("OGC:WMS"))
+                            {
+                                lstData.SvicType = "WMS";
+
+                                urlCapabilities = ndRef.InnerText;
+                                string[] rUrlCapabilities = urlCapabilities.Split('?');
+
+                                lstData.SvrUrl = rUrlCapabilities[0] + '?';
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            { throw ex; }
+
+
+            return lstData;
+        }
 /// <summary>
 /// Parse the response from OneGeology Catalog
 /// </summary>
@@ -239,8 +301,8 @@ namespace ArcMapAddin1
                 switch (indexCatalog)
                 {
                     case 0:
-                        ListDataModel usginModel = ParseEachGeoportalSearchResult(ndMDa, xnManager);
-                        Add2DaList(usginModel);
+                        ListDataModel aasgModel = ParseEachGeoportalSearchResult(ndMDa, xnManager);
+                        Add2DaList(aasgModel);
                         break;
                     case 1:
                         ListDataModel onegeologyModel = ParseEachOnegeologySearchResult(ndMDa, xnManager);
@@ -249,6 +311,10 @@ namespace ArcMapAddin1
                     case 2:
                         ListDataModel geogovModel = ParseEachGeoportalSearchResult(ndMDa, xnManager);
                         Add2DaList(geogovModel);
+                        break;
+                    case 3:
+                        ListDataModel usginModel = ParseEachMultiDistGeoportalSearchResult(ndMDa, xnManager);
+                        Add2DaList(usginModel);
                         break;
                 }          
             }

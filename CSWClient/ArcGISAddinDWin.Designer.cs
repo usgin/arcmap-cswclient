@@ -196,9 +196,10 @@
             this.cboCatalog.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCatalog.FormattingEnabled = true;
             this.cboCatalog.Items.AddRange(new object[] {
-            "USGIN AASG Geothermal Data Catalog",
+            "USGIN Catalog",
             "OneGeology Portal",
-            "Geo Data Government"});
+            "Geo Data Government",
+            "AASG Geothermal Data Catalog"});
             this.cboCatalog.Location = new System.Drawing.Point(23, 22);
             this.cboCatalog.Name = "cboCatalog";
             this.cboCatalog.Size = new System.Drawing.Size(268, 21);

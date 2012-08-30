@@ -332,6 +332,11 @@ namespace ArcMapAddin1
                     pFrmViewMetadata.Show();
                     pFrmViewMetadata.Activate();
                     break;
+                case 3:
+                    pFrmViewMetadata.OpenMetadataDoc("http://catalog.stategeothermaldata.org/geoportal/rest/document?id=" + selectedItem.MetadataId);
+                    pFrmViewMetadata.Show();
+                    pFrmViewMetadata.Activate();
+                    break;
             }
 
 
@@ -364,6 +369,11 @@ namespace ArcMapAddin1
                     cboxWms.Enabled = false;
                     cboxLivedata.Enabled = true;
                     break;
+                case 3:
+                    cCswSearch.CatalogUrl = "http://catalog.stategeothermaldata.org/geoportal/csw/discovery?";
+                    cboxWms.Enabled = false;
+                    cboxLivedata.Enabled = false;
+                    break;
             }
         }
 
@@ -382,6 +392,8 @@ namespace ArcMapAddin1
                 case 1:
                     return false;
                 case 2:
+                    return false;
+                case 3:
                     return false;
                 default:
                     return true;
@@ -403,6 +415,9 @@ namespace ArcMapAddin1
                     isLivedata = cboxLivedata.Checked;
                     break;
                 case 1:
+                    isLivedata = false;
+                    break;
+                case 3:
                     isLivedata = false;
                     break;
             }
