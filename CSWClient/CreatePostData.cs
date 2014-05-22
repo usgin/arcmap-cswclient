@@ -122,10 +122,15 @@ namespace ArcMapAddin1
 
         private void SearchForWmsOnly(StringBuilder pBuilder)
         {
-            pBuilder.Append("<ogc:PropertyIsEqualTo>");
-            pBuilder.Append("<ogc:PropertyName>apiso:ServiceType</ogc:PropertyName>");
+            //pBuilder.Append("<ogc:PropertyIsEqualTo>");
+            //pBuilder.Append("<ogc:PropertyName>apiso:ServiceType</ogc:PropertyName>");
+            //pBuilder.Append("<ogc:Literal>wms</ogc:Literal>");
+            //pBuilder.Append("</ogc:PropertyIsEqualTo>");
+
+            pBuilder.Append("<ogc:PropertyIsLike>");
+            pBuilder.Append("<ogc:PropertyName>AnyText</ogc:PropertyName>");
             pBuilder.Append("<ogc:Literal>wms</ogc:Literal>");
-            pBuilder.Append("</ogc:PropertyIsEqualTo>");
+            pBuilder.Append("</ogc:PropertyIsLike>");
         }
 
         private void SearchForLiveDataOnly(StringBuilder pBuilder)

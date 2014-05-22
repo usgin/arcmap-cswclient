@@ -33,3 +33,15 @@ K:\CSWClient\CSWClient\obj\Debug\ResGen.write.1.tlog
 K:\CSWClient\CSWClient\obj\Debug\CSWClient.dll
 K:\CSWClient\CSWClient\obj\Debug\CSWClient.pdb
 K:\CSWClient\CSWClient\bin\Debug\CSWClient.esriAddIn
+C:\Users\jalisdairi\Documents\Projects\arcmap-cswclient\CSWClient\obj\Debug\CSWClient.csprojResolveAssemblyReference.cache
+C:\Users\jalisdairi\Documents\Projects\arcmap-cswclient\CSWClient\obj\Debug\ArcMapAddin1.ArcGISAddinDWin.resources
+C:\Users\jalisdairi\Documents\Projects\arcmap-cswclient\CSWClient\obj\Debug\ArcMapAddin1.FormViewMetadata.resources
+C:\Users\jalisdairi\Documents\Projects\arcmap-cswclient\CSWClient\obj\Debug\ArcMapAddin1.Properties.Resources.resources
+C:\Users\jalisdairi\Documents\Projects\arcmap-cswclient\CSWClient\obj\Debug\ArcMapAddin1.XmlVisualizerWin.resources
+C:\Users\jalisdairi\Documents\Projects\arcmap-cswclient\CSWClient\obj\Debug\CSWClient.csproj.GenerateResource.Cache
+C:\Users\jalisdairi\Documents\Projects\arcmap-cswclient\CSWClient\obj\Debug\CSWClient.dll
+C:\Users\jalisdairi\Documents\Projects\arcmap-cswclient\CSWClient\obj\Debug\CSWClient.pdb
+C:\Users\jalisdairi\Documents\Projects\arcmap-cswclient\CSWClient\bin\Debug\CSWClient.dll.config
+C:\Users\jalisdairi\Documents\Projects\arcmap-cswclient\CSWClient\bin\Debug\CSWClient.dll
+C:\Users\jalisdairi\Documents\Projects\arcmap-cswclient\CSWClient\bin\Debug\CSWClient.pdb
+C:\Users\jalisdairi\Documents\Projects\arcmap-cswclient\CSWClient\bin\Debug\CSWClient.esriAddIn
