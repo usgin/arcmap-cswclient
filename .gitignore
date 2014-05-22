@@ -1,5 +1,25 @@
 
 CSWClient/bin/Debug/CSWClient.dll
 CSWClient/bin/Debug/CSWClient.dll.config
-CSWClient/bin/Debug/CSWClient.esriAddIn
 CSWClient/bin/Debug/CSWClient.pdb
+#Ignore files build by Visual Studio
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.lib
+*.sbr
+obj/
