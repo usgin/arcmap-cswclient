@@ -2,7 +2,7 @@
   <Name>CSWClient</Name>
   <AddInID>{ea8cc55c-faf8-48cd-8aa0-a1855ba7e687}</AddInID>
   <Description>CSW Client development</Description>
-  <Version>2.0</Version>
+  <Version>2.1</Version>
   <Image>Images\ArcMapAddin1.png</Image>
   <Author>gchen</Author>
   <Company>Microsoft</Company>

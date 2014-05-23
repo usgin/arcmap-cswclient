@@ -168,6 +168,10 @@ namespace ArcMapAddin1
             for (int i = 0; i < ndIdentifierList.Count; i++)
             {
                 XmlNode ndMetaDaId = ndIdentifierList[i];
+                if (ndMetaDaId.InnerText != null)
+                {
+                    lstData.MetadataId = ndMetaDaId.InnerText;
+                }
                 for (int j = 0; j < ndMetaDaId.Attributes.Count; j++)
                 {
                     if (ndMetaDaId.Attributes[j].Name == "scheme" && ndMetaDaId.Attributes[j].Value.Contains("DocID"))
@@ -309,7 +313,7 @@ namespace ArcMapAddin1
                         Add2DaList(onegeologyModel);
                         break;
                     case 2:
-                        ListDataModel geogovModel = ParseEachGeoportalSearchResult(ndMDa, xnManager);
+                        ListDataModel geogovModel = ParseEachMultiDistGeoportalSearchResult(ndMDa, xnManager);
                         Add2DaList(geogovModel);
                         break;
                     case 3:

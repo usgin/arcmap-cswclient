@@ -35,10 +35,10 @@ namespace ArcMapAddin1
         private string XmlTransform(string input)
         {
             string tmpOutput = GenerateTempFilename("Meta", "html");
-            XslTransform pXslTransform = new XslTransform();
+            XslCompiledTransform pXslTransform = new XslCompiledTransform();
             try
             {
-                pXslTransform.Load("http://catalog.usgin.org/XSLT/ISO19139ToHTML.xsl");
+                pXslTransform.Load("http://xslt.usgin.org/ISO19139ToHTML.xsl");
             }
             catch (Exception ex)
             {

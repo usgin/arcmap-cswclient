@@ -309,54 +309,12 @@ namespace ArcMapAddin1
         private void btnMetaDoc_Click(object sender, EventArgs e)
         {
             btnMetaDoc.Cursor = Cursors.WaitCursor;
-/*
-            XmlVisualizerWin pXmlVisualizer = new XmlVisualizerWin();
-            switch (cboCatalog.SelectedIndex)
-            {
-                case 0:
-                    string urlMetaUsginDoc = "http://catalog.usgin.org/geoportal/rest/document?id=" + selectedItem.MetadataId;
-                    pXmlVisualizer.UrlMetaDoc = urlMetaUsginDoc;
-                    break;
-                case 1:
-                    string urlMetaOnegeologyDoc = "http://onegeology-catalog.brgm.fr/geonetwork/srv/csw?request=GetRecordById&outputSchema=http://www.isotc211.org/2005/gmd&id=" + selectedItem.MetadataId;
-                    pXmlVisualizer.UrlMetaDoc = urlMetaOnegeologyDoc;
-                    break;
-                case 2:
-                    string urlMetaGeogovDoc = "http://geo.data.gov/geoportal/rest/document?id=" + selectedItem.MetadataId;
-                    pXmlVisualizer.UrlMetaDoc = urlMetaGeogovDoc;
-                    break;
-            }
-           
-            pXmlVisualizer.ListMetaDocXml();
-            pXmlVisualizer.Text = selectedItem.Title;
-            pXmlVisualizer.Show();
-*/
+
             FormViewMetadata pFrmViewMetadata = new FormViewMetadata();
             pFrmViewMetadata.Text = lboxResults.SelectedItem.ToString();
-            switch (cboCatalog.SelectedIndex)
-            {
-                case 0:
-                    pFrmViewMetadata.OpenMetadataDoc("http://catalog.usgin.org/geoportal/rest/document?id=" + selectedItem.MetadataId);
-                    pFrmViewMetadata.Show();
-                    pFrmViewMetadata.Activate();
-                    break;
-                case 1:
-                    pFrmViewMetadata.OpenMetadataDoc("http://onegeology-catalog.brgm.fr/geonetwork/srv/csw?request=GetRecordById&outputSchema=http://www.isotc211.org/2005/gmd&id=" + selectedItem.MetadataId);
-                    pFrmViewMetadata.Show();
-                    pFrmViewMetadata.Activate();
-                    break;
-                case 2:
-                    pFrmViewMetadata.OpenMetadataDoc("http://geo.data.gov/geoportal/rest/document?id=" + selectedItem.MetadataId);
-                    pFrmViewMetadata.Show();
-                    pFrmViewMetadata.Activate();
-                    break;
-                case 3:
-                    pFrmViewMetadata.OpenMetadataDoc("http://catalog.stategeothermaldata.org/geoportal/rest/document?id=" + selectedItem.MetadataId);
-                    pFrmViewMetadata.Show();
-                    pFrmViewMetadata.Activate();
-                    break;
-            }
-
+            pFrmViewMetadata.OpenMetadataDoc(cCswSearch.CatalogUrl + "service=CSW&version=2.0.2&request=GetRecordById&elementsetname=full&outputSchema=http://www.isotc211.org/2005/gmd&id=" + selectedItem.MetadataId);
+            pFrmViewMetadata.Show();
+            pFrmViewMetadata.Activate();
 
             btnMetaDoc.Cursor = Cursors.Default;
         }
