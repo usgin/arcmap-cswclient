@@ -42,7 +42,10 @@ namespace ArcMapAddin1
                 pBuilder.Append("<csw:Constraint version='1.1.0'>");
                 pBuilder.Append("<ogc:Filter>");
 
-                pBuilder.Append("<ogc:And>");
+                if (pPostDaCri.IsLiveDataOnly || pPostDaCri.IsWmsOnly || (pPostDaCri.Envelope != null))
+                {
+                    pBuilder.Append("<ogc:And>");
+                }
 
                 SearchText(pBuilder); ///Set search criterias, including search key word and search area
 
@@ -54,7 +57,10 @@ namespace ArcMapAddin1
                     BoundingBox(pBuilder); ///Set bounding box
                 }
 
-                pBuilder.Append("</ogc:And>");
+                if (pPostDaCri.IsLiveDataOnly || pPostDaCri.IsWmsOnly || (pPostDaCri.Envelope != null))
+                {
+                    pBuilder.Append("</ogc:And>");
+                }
 
                 pBuilder.Append("</ogc:Filter>");
                 pBuilder.Append("</csw:Constraint>");
@@ -127,8 +133,10 @@ namespace ArcMapAddin1
             //pBuilder.Append("<ogc:Literal>wms</ogc:Literal>");
             //pBuilder.Append("</ogc:PropertyIsEqualTo>");
 
-            pBuilder.Append("<ogc:PropertyIsLike>");
-            pBuilder.Append("<ogc:PropertyName>AnyText</ogc:PropertyName>");
+            pBuilder.Append("<ogc:PropertyIsLike wildCard='*' escapeChar='\' singleChar='?'>");
+            pBuilder.Append("<ogc:PropertyName>");
+            pBuilder.Append(pPostDataCriteria.QueryName);
+            pBuilder.Append("</ogc:PropertyName>");
             pBuilder.Append("<ogc:Literal>wms</ogc:Literal>");
             pBuilder.Append("</ogc:PropertyIsLike>");
         }

@@ -96,6 +96,24 @@ namespace ArcMapAddin1
             if (tboxSearchText.Text == "") { tboxSearchText.Text = "*"; }
             pPostDaCri.SearchText = tboxSearchText.Text; ///Set search key word
             pPostDaCri.QueryName = cboSearchName.SelectedItem.ToString(); ///Set search name
+
+            // CSW Servers which use pycsw need to have the namespace before the query name and are case sensitive
+            if ((cCswSearch.CatalogUrl == "http://catalog.data.gov/csw?") || (cCswSearch.CatalogUrl == "http://geothermaldata.org/csw?"))
+            {
+                switch(pPostDaCri.QueryName)
+                {
+                    case "AnyText":
+                        pPostDaCri.QueryName = "csw:AnyText";
+                        break;
+                    case "Title":
+                        pPostDaCri.QueryName = "dc:title";
+                        break;
+                    case "Abstract":
+                        pPostDaCri.QueryName = "dct:abstract";
+                        break;
+                }
+            }
+
             pPostDaCri.StartPosition = pPageSwitchCri.StartPosition.ToString(); ///Set start position for search
 
             ///Define if the search is only for wms service / live data
@@ -361,17 +379,17 @@ namespace ArcMapAddin1
                     break;
                 case 1:
                     cCswSearch.CatalogUrl = "http://onegeology-catalog.brgm.fr/geonetwork/srv/csw?";
-                    cboxWms.Enabled = false;
+                    cboxWms.Enabled = true;
                     cboxLivedata.Enabled = false;
                     break;
                 case 2:
-                    cCswSearch.CatalogUrl = "http://geo.data.gov/geoportal/csw/discovery?";
-                    cboxWms.Enabled = false;
-                    cboxLivedata.Enabled = true;
+                    cCswSearch.CatalogUrl = "http://catalog.data.gov/csw?";
+                    cboxWms.Enabled = true;
+                    cboxLivedata.Enabled = false;
                     break;
                 case 3:
-                    cCswSearch.CatalogUrl = "http://catalog.stategeothermaldata.org/geoportal/csw/discovery?";
-                    cboxWms.Enabled = false;
+                    cCswSearch.CatalogUrl = "http://geothermaldata.org/csw?";
+                    cboxWms.Enabled = true;
                     cboxLivedata.Enabled = false;
                     break;
             }
@@ -390,11 +408,11 @@ namespace ArcMapAddin1
                 case 0:
                     return cboxWms.Checked;
                 case 1:
-                    return false;
+                    return cboxWms.Checked;
                 case 2:
-                    return false;
+                    return cboxWms.Checked;
                 case 3:
-                    return false;
+                    return cboxWms.Checked;
                 default:
                     return true;
             }
@@ -415,6 +433,9 @@ namespace ArcMapAddin1
                     isLivedata = cboxLivedata.Checked;
                     break;
                 case 1:
+                    isLivedata = false;
+                    break;
+                case 2:
                     isLivedata = false;
                     break;
                 case 3:

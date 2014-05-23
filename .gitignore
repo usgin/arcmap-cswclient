@@ -6,7 +6,6 @@ CSWClient/bin/Debug/CSWClient.pdb
 *.obj
 *.exe
 *.pdb
-*.user
 *.aps
 *.pch
 *.vspscc

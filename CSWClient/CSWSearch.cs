@@ -58,6 +58,8 @@ namespace ArcMapAddin1
         {
             set
             { strCatalogUrl = value; }
+            get
+            { return strCatalogUrl; }
         }
 
         public void CswRequest(PostDataCriteria pPostDaCri, int indexSelectedCatalog)

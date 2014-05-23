@@ -61,8 +61,8 @@
             // 
             // tboxSearchText
             // 
-            this.tboxSearchText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tboxSearchText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxSearchText.Location = new System.Drawing.Point(116, 58);
             this.tboxSearchText.Name = "tboxSearchText";
             this.tboxSearchText.Size = new System.Drawing.Size(106, 20);
@@ -71,8 +71,8 @@
             // 
             // lboxResults
             // 
-            this.lboxResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lboxResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lboxResults.FormattingEnabled = true;
             this.lboxResults.HorizontalScrollbar = true;
             this.lboxResults.Location = new System.Drawing.Point(21, 164);
@@ -94,8 +94,8 @@
             // 
             // tboxAbstract
             // 
-            this.tboxAbstract.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tboxAbstract.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxAbstract.Location = new System.Drawing.Point(23, 400);
             this.tboxAbstract.Multiline = true;
             this.tboxAbstract.Name = "tboxAbstract";
@@ -180,8 +180,6 @@
             // cboxLivedata
             // 
             this.cboxLivedata.AutoSize = true;
-            this.cboxLivedata.Checked = true;
-            this.cboxLivedata.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxLivedata.Location = new System.Drawing.Point(82, 91);
             this.cboxLivedata.Name = "cboxLivedata";
             this.cboxLivedata.Size = new System.Drawing.Size(70, 17);
@@ -191,15 +189,15 @@
             // 
             // cboCatalog
             // 
-            this.cboCatalog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboCatalog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboCatalog.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCatalog.FormattingEnabled = true;
             this.cboCatalog.Items.AddRange(new object[] {
             "USGIN Catalog",
             "OneGeology Portal",
-            "Geo Data Government",
-            "AASG Geothermal Data Catalog"});
+            "Data.gov Catalog",
+            "NGDS Catalog"});
             this.cboCatalog.Location = new System.Drawing.Point(23, 22);
             this.cboCatalog.Name = "cboCatalog";
             this.cboCatalog.Size = new System.Drawing.Size(268, 21);
@@ -218,8 +216,8 @@
             // 
             // lbAbstract
             // 
-            this.lbAbstract.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbAbstract.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lbAbstract.AutoSize = true;
             this.lbAbstract.Location = new System.Drawing.Point(20, 375);
             this.lbAbstract.Name = "lbAbstract";
