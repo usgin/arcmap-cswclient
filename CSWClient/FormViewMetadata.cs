@@ -35,10 +35,11 @@ namespace ArcMapAddin1
         private string XmlTransform(string input)
         {
             string tmpOutput = GenerateTempFilename("Meta", "html");
+
             XslCompiledTransform pXslTransform = new XslCompiledTransform();
             try
             {
-                pXslTransform.Load("http://xslt.usgin.org/ISO19139ToHTML.xsl");
+                pXslTransform.Load("http://services.azgs.az.gov/ISO19139ToHTML/ISO19139ToHTML.xsl");
             }
             catch (Exception ex)
             {
@@ -94,7 +95,10 @@ namespace ArcMapAddin1
             string strResponse = responseReader.ReadToEnd();
             responseReader.Close();
 
-            return strResponse;
+            // Get the gmd:MD_Metadata node
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.LoadXml(strResponse);
+            return xDoc.LastChild["gmd:MD_Metadata"].OuterXml;
         }
 
     }

@@ -312,7 +312,7 @@ namespace ArcMapAddin1
 
             FormViewMetadata pFrmViewMetadata = new FormViewMetadata();
             pFrmViewMetadata.Text = lboxResults.SelectedItem.ToString();
-            pFrmViewMetadata.OpenMetadataDoc(cCswSearch.CatalogUrl + "service=CSW&version=2.0.2&request=GetRecordById&elementsetname=full&outputSchema=http://www.isotc211.org/2005/gmd&id=" + selectedItem.MetadataId);
+            pFrmViewMetadata.OpenMetadataDoc(cCswSearch.CatalogUrl + "service=CSW&version=2.0.2&request=GetRecordById&typeNames=gmd:MD_Metadata&elementsetname=full&outputSchema=http://www.isotc211.org/2005/gmd&id=" + selectedItem.MetadataId);
             pFrmViewMetadata.Show();
             pFrmViewMetadata.Activate();
 
