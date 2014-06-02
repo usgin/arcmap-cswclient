@@ -1,3 +1,13 @@
+# ArcMap CSW Client
+
+This AddIn for ArcMap allows the user to search several Catalog Services for the Web (CSW) from within ArcMap. Four catalogs can be searched:
+  - **USGIN Catalog**
+  - **OneGeology Portal**
+  - **Data.gov Catalog**
+  - **NGDS Catalog**
+
+Metadata for found resources can be easily viewed from within the AddIn and resources published as Web Map Services (WMS) can be added directly to the working map.
+
 ### Installation
 1. Find the file **CSWClient.esriAddIn** in the **CSWClient/bin/Debug** folder. (If using GitHub open the file and click the **Raw** button to download only this file.)
 2. Save CSWClient.esriAddIn to your computer in a location of your choosing.
