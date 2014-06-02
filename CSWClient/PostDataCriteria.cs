@@ -17,6 +17,7 @@ namespace ArcMapAddin1
         private Boolean _isLiveDataOnly;
         private Boolean _isWmsOnly;
         private Envelope _envelope;
+        private Boolean _switchXY;
 
         public string StartPosition
         {
@@ -71,5 +72,12 @@ namespace ArcMapAddin1
             set { _isWmsOnly = value; }
             get { return _isWmsOnly; }
         }
+
+        public Boolean SwitchXY
+        {
+            set { _switchXY = value; }
+            get { return _switchXY; }
+        }
+
     }
 }

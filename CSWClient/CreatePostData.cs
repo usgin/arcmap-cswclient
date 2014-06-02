@@ -115,12 +115,21 @@ namespace ArcMapAddin1
             pBuilder.Append("<gml:Envelope>");
             pBuilder.Append("<gml:lowerCorner>");
 
-            pBuilder.Append(pPostDataCriteria.Envelope.MinX.ToString() + " " + pPostDataCriteria.Envelope.MinY.ToString());    
-            //pBuilder.Append("-118.3 32.1");
+            // GeoPortal and GeoNode require X/Y and pyCSW requrires Y/X
+            if (pPostDataCriteria.SwitchXY == true)
+                pBuilder.Append(pPostDataCriteria.Envelope.MinX.ToString() + " " + pPostDataCriteria.Envelope.MinY.ToString());    
+            else
+                 pBuilder.Append(pPostDataCriteria.Envelope.MinY.ToString() + " " + pPostDataCriteria.Envelope.MinX.ToString());
+ 
             pBuilder.Append("</gml:lowerCorner>");
             pBuilder.Append("<gml:upperCorner>");
-            pBuilder.Append(pPostDataCriteria.Envelope.MaxX.ToString() + " " + pPostDataCriteria.Envelope.MaxY.ToString());
-            //pBuilder.Append("-87.1 45.2");
+
+            // GeoPortal and GeoNode require X/Y and pyCSW requrires Y/X
+            if (pPostDataCriteria.SwitchXY == true)
+                pBuilder.Append(pPostDataCriteria.Envelope.MaxX.ToString() + " " + pPostDataCriteria.Envelope.MaxY.ToString());
+            else
+                pBuilder.Append(pPostDataCriteria.Envelope.MaxY.ToString() + " " + pPostDataCriteria.Envelope.MaxX.ToString());
+
             pBuilder.Append("</gml:upperCorner>");
             pBuilder.Append("</gml:Envelope>");
             pBuilder.Append("</ogc:BBOX>");            

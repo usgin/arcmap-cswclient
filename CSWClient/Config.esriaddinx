@@ -2,9 +2,9 @@
   <Name>CSWClient</Name>
   <AddInID>{ea8cc55c-faf8-48cd-8aa0-a1855ba7e687}</AddInID>
   <Description>CSW Client development</Description>
-  <Version>2.2</Version>
+  <Version>2.3</Version>
   <Image>Images\ArcMapAddin1.png</Image>
-  <Author>gchen</Author>
+  <Author>Gehan Chen, Jessica Good</Author>
   <Company>Microsoft</Company>
   <Date>9/8/2011</Date>
   <Targets>

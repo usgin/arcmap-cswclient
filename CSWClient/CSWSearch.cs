@@ -63,15 +63,19 @@ namespace ArcMapAddin1
         }
 
         public void CswRequest(PostDataCriteria pPostDaCri, int indexSelectedCatalog)
-        {
-
-                ///Get xml data for post request
-                ///
+        {                
+                // GeoPortal and GeoNode require X/Y and pyCSW requrires Y/X
                 CreatePostData pPostData = new CreatePostData();
+                if (strCatalogUrl == "http://catalog.usgin.org/geoportal/csw/discovery?" || strCatalogUrl == "http://onegeology-catalog.brgm.fr/geonetwork/srv/csw?")
+                    pPostDaCri.SwitchXY = true;
+                else
+                    pPostDaCri.SwitchXY = false;
+
+                //Get xml data for post request
                 pPostData.CreatXmlDoc(pPostDaCri);
                 strPostDa = pPostData.PostData;
                 
-                ///Send csw request         
+                ///Send csw request
                 Uri cswUri = new Uri(strCatalogUrl);
                 HttpWebRequest cswRequest = (HttpWebRequest)WebRequest.Create(cswUri);
                 cswRequest.AllowAutoRedirect = true;
